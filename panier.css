@@ -1,0 +1,148 @@
+/* MESSAGE PANIER VIDE */
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.message-panier-vide {
+    color: 000000;
+    font-family: 'Source Sans Pro', Garamond, Arial;
+    font-size: 50px;
+}
+
+.message-panier-vide span{
+    font-weight: bold;
+}
+
+/* ARTICLE */
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.voir_panier {
+    border-style:solid;
+    border-width: 3px;
+    border-color: #000000;
+}
+
+.voir_panier h2 {
+    font-family: 'Lora', Garamond, Arial;
+    font-weight: bold;
+    font-size: 45px;
+}
+
+.voir_panier p {
+    font-family: 'Source Sans Pro', Garamond, Arial;
+    font-size: 25px;
+}
+
+.voir_panier p span{
+    font-weight:bold;
+}
+
+.voir_panier .btn-saisie-nbr {
+    width:60px;
+}
+
+.voir_panier .btns {
+    border-radius: 15px;
+    border-style: outset;
+    font-family: 'Source Sans Pro', Garamond, Arial;
+    font-size: 25px;
+}
+
+.voir_panier .btns:hover {
+    transform: scale(1.1);
+    transition: 1.5s;
+}
+
+.voir_panier .btn_modif {
+    color:#000000;
+    background-color: #978562;
+    border-color: #978562;
+    font-weight: bold;
+}
+
+.voir_panier .btn_modif:hover {
+    color: #978562;
+    background-color: #ffffff;
+}
+
+.voir_panier .btn_suppr {
+    color:#7e1111;
+    background-color: #ffffff;
+    border-color: #7e1111;
+}
+
+.voir_panier .btn_suppr:hover {
+    color:#ffffff;
+    background-color: #7e1111;
+}
+
+.voir_panier .image_article {
+    max-width: 8vw;
+}
+
+
+    /* TOTAL PANIER */
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.total_articles {
+    font-family: 'Source Sans Pro', Garamond, Arial;
+    font-size: 35px;
+}
+
+.total_articles span {
+    font-weight: bold;
+}
+
+
+    /* BTNS VALIDER & VIDER */
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.valider_vider .btns {
+    border-color: #7e1111;
+    border-radius: 20px;
+    border-style: outset;
+    font-family: 'Source Sans Pro', Garamond, Arial;
+    font-size: 35px;
+}
+
+.valider_vider .btns:hover {
+    transform: scale(1.2);
+    transition: 1.5s;
+}
+
+.valider_vider .btn_valider {
+    color: #ffffff;
+    background-color: #7e1111;
+    font-weight: bold;
+}
+
+.valider_vider .btn_valider:hover {
+    color: #7e1111;
+    background-color: #ffffff;
+}
+
+.valider_vider .btn_vider {
+    color: #7e1111;
+    background-color: #ffffff;
+}
+
+.valider_vider .btn_vider:hover {
+    color: #ffffff;
+    background-color: #7e1111;
+}
+
+  /* ======================================================================
+MEDIA QUERIES
+====================================================================== */
+
+/* @media screen and (max-width: 1199px) {
+
+    .voir_panier .image_article {
+        min-width:12vw;
+    }
+}
+
+@media screen and (max-width: 991px) {
+
+    .voir_panier .image_article {
+        min-width:50vw;
+    }
+} */

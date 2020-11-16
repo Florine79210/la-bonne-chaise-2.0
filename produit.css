@@ -1,0 +1,51 @@
+    /* DETAILS PRODUIT */
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.details_article{
+    border-style:solid;
+    border-width: 3px;
+    border-color: #000000;
+}
+
+.details_article h2{
+    font-family: 'Lora', Garamond, Arial;
+    font-weight: bold;
+    font-size: 45px;
+}
+
+.details_article p{
+    font-family: 'Source Sans Pro', Garamond, Arial;
+    font-size: 25px;
+}
+
+.details_article p span{
+    font-weight:bold;
+}
+
+.details_article .btn-ajout-panier{
+    background-color: #7e1111;
+    border-color: #7e1111;
+    border-radius: 20px;
+    border-style: outset;
+    color: #ffffff;
+    font-family: 'Source Sans Pro', Garamond, Arial;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.details_article .btn-ajout-panier:hover{
+    background-color: #ffffff;
+    color: #7e1111;
+    transform: scale(1.1);
+    transition: 1.5s;
+}
+
+.details_article .image_article{
+   min-width:20vw;
+}
+
+  /* ======================================================================
+MEDIA QUERIES
+====================================================================== */
+
+/* @media screen and (max-width: 1199px) { */
