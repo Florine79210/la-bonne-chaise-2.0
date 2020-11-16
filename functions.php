@@ -1,40 +1,44 @@
 <?php
 
+function get_connection(){
+
+    try {
+        $bdd = new PDO('mysql:host=localhost;dbname=boutique_en_ligne;charset=utf8', 'florine', 'Stell@1914bl0*', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));    
+    }
+    
+    catch (Exception $e){
+        die('Erreur : ' . $e->getMessage());
+    }
+
+    return $bdd;
+}
+
+
+
         // LISTE DES ARTICLES
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 function getArticles() {
 
-    return [
-        "article 1" => ["id" => "1", "name" => "Füt'Hürr", "picture" => "chaise-fut-hurr.jpg", "description" => "Moulée dans un seul bloc de polypropylène, la chaise design Füt'Hürr donnera un aspect résolument moderne et futuriste à votre décoration intérieure.",
-                        "descriptionDetaillee" => "Ses courbes associées font de la chaise Füt'Hürr un modèle du genre. La forme ergonomique de son siège vous offre un excellent confort d'assise. Si vous souhaitez meubler un intérieur moderne ou design,
-                        cette chaise est faite pour vous !<br>Petit plus, légère et empilable, elle peut également être utilisée sur votre terrasse ou dans votre jardin.",
-                        "price" => 149.99],
-        "article 2" => ["id" => "2", "name" => "Rusticae", "picture" => "chaise-rusticae.jpg", "description" => "La chaise Rusticae est une création française de qualité. Elle possède un look hors du temps, très nature et élégant qui s'accorde parfaitement avec tous les styles d'intérieur.",
-                        "descriptionDetaillee" => "Cette chaise française se distingue par sa robustesse. Elle possède un dossier et une assise en lin ainsi qu'une épaisse structure en bois flotté qui se veut rassurante et rustique. 
-                        Cette chaise est idéale pour apporter une authenticité accrue à votre déco.",
-                        "price" => 249.99],
-        "article 3" => ["id" => "3", "name" => "Wave", "picture" => "chaise-wave.jpg", "description" => "Chaleureuse, séduisante et tendance,<br>la chaise en tissu Wave est un fructueux<br>mélange entre modernité et confort.",
-                        "descriptionDetaillee" => "Envie de douceur dans votre intérieur ?<br>Ne cherchez pas plus longtemps, la chaise Wave sera votre meuble idéal ! Un dossier haut pour un maintien optimal, 
-                        un tissu agréable et chaleureux ainsi qu'une assise rembourrée ... Tous les atouts sont là pour vous offrir un confort des plus délectables. Cette chaise confortable s'accommodera aisément dans les intérieurs
-                        contemporains ou modernes et vous fera passer un bon moment de détente et de convivialité ! A noter que la housse est déhoussable afin de faciliter son entretien.",
-                        "price" => 199.99],
-        "article 4" => ["id" => "4", "name" => "Whirlwind", "picture" => "chaise_whirlwind.jpg", "description" => "Conçue par notre équipe de designers,<br>la chaise Whirlwind incarne le parfait compromis entre design et confort.",
-                        "descriptionDetaillee" => "La chaise design Whirlwind trouvera sa place aussi bien dans un séjour, un salon ou un bureau. La conception de sa coque a été pensée dans les moindres détails afin d'offrir un excellent confort à ses utilisateurs.<br>
-                        En effet, moulée dans un bloc de polypropylène, sa coque possède de jolies courbes. Son piétement en granit brut est également pivotant, ce qui garantit une liberté de mouvement.",
-                        "price" => 299.99]
-    ];
+    $bdd = get_connection();
+
+    $listeArticles = $bdd->query('SELECT * FROM articles');
+
+    return $listeArticles->fetchAll(PDO::FETCH_ASSOC);
+  
 }
 
 
         // VOIR LES ARTICLES (PAGE D'ACCUEIL)
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-function showArticles($listeArticles){
+function showArticles(){
+
+    $listeArticles = getArticles();
 
     foreach ($listeArticles as $article){
 
-        $article["price"] = number_format($article["price"], 2, ',', ' ');
+        $article['prix'] = number_format($article['prix'], 2, ',', ' ');
 
         echo "<div class=\"container mt-5 mb-5 p-5 fiche_article\">
 
@@ -42,21 +46,21 @@ function showArticles($listeArticles){
 
                     <div class=\"col-md-6 pl-5\">
                         <div class=\"row mb-5 pt-3 text-center\">
-                            <h2>" .  $article["name"] . "<h2>\n
+                            <h2>" .  $article['nom'] . "<h2>\n
                         </div>
                         
                         <div class=\"row pr-5\"> 
-                            <p>" . $article["description"] . "<p>\n
+                            <p>" . $article['description'] . "<p>\n
                         </div>            
                     </div>  
 
                     <div class=\"col-md-6\">
                         <div class=\"row justify-content-center\">
-                            <img class=\"image_article\" src=\"images/" . $article["picture"] . "\">
+                            <img class=\"image_article\" src=\"images/" . $article['image'] . "\">
                         </div>
 
                         <div class=\"row mb-3 justify-content-center\">
-                            <p>Prix unitaire : <span>" . $article["price"] . " €</span><p>\n
+                            <p>Prix unitaire : <span>" . $article['prix'] . " €</span><p>\n
                         </div>
                     </div>
                 </div>
@@ -77,40 +81,40 @@ function showArticles($listeArticles){
                     </div>
                 </div>    
 
-
             </div>";  
     }                
 }
-
 
         // VOIR LES DETAILS D'UN ARTICLE (PAGE PRODUITS)
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 function showArticleDetails($article){
 
-    $article["price"] = number_format($article["price"], 2, ',', ' ');
+    $listeArticles = getArticles();
+
+    $article['prix'] = number_format($article['prix'], 2, ',', ' ');
 
         echo "<div class=\"container mt-5 mb-5 p-5 details_article\">
                 <div class=\"row\">
 
                     <div class=\"col-md-6 pl-5\">
                         <div class=\"row mb-3\">
-                            <h2>" .  $article["name"] . "<h2>\n
+                            <h2>" .  $article['nom'] . "<h2>\n
                         </div>
                         
                         <div class=\"row mb-3\">
-                            <p>" . $article["description"] . "<p>\n
-                            <p>" . $article["descriptionDetaillee"] . "<p>\n
+                            <p>" . $article['description'] . "<p>\n
+                            <p>" . $article['description_detaillee'] . "<p>\n
                         </div>                     
                     </div>
 
                     <div class=\"col-md-6\">
                         <div class=\"row mt-4 justify-content-center\">
-                            <img class=\" mt-4 pt-4 image_article\" src=\"images/" . $article["picture"] . "\">
+                            <img class=\" mt-4 pt-4 image_article\" src=\"images/" . $article['image'] . "\">
                         </div> 
                         
                         <div class=\"row mt-4 justify-content-center\">       
-                            <p>Prix unitaire : <span>" . $article["price"] . " €</span><p>\n
+                            <p>Prix unitaire : <span>" . $article['prix'] . " €</span><p>\n
                         </div> 
                     </div> 
                 
@@ -132,6 +136,8 @@ function showArticleDetails($article){
 
 function getArticleFromId($listeArticles, $id){
 
+    $listeArticles = getArticles();
+
     foreach ($listeArticles as $article){
 
         if ($article["id"] == $id){
@@ -144,6 +150,8 @@ function getArticleFromId($listeArticles, $id){
 // <-----Ajouter un article au panier ---------------->
 
 function ajoutPanier($article){
+
+    $listeArticles = getArticles();
 
     $articleAjoute = false;
 
@@ -166,21 +174,23 @@ function ajoutPanier($article){
 
 function showPanier($nomDePage){
 
+    $listeArticles = getArticles();
+
     foreach ($_SESSION["panier"] as $article){
 
-        $article["price"] = number_format($article["price"], 2, ',', ' ');
+        $article['prix'] = number_format($article['prix'], 2, ',', ' ');
 
         echo "<div class=\"container mt-5 mb-5 pt-3 pb-3 voir_panier\">
                 <div class=\"row align-items-center\">
                 
                     <div class=\"col-md-4 text-center\">
-                        <h2 class=\"mb-3\">" .  $article['name'] . "<h2>\n
-                        <img class=\"image_article\" src=\"images/" . $article['picture'] . "\">
+                        <h2 class=\"mb-3\">" .  $article['nom'] . "<h2>\n
+                        <img class=\"image_article\" src=\"images/" . $article['image'] . "\">
                     </div>
                              
                     <div class=\"col-md-4\">
                         <div class=\"row mb-4 justify-content-center\">      
-                            <p>Prix unitaire : <span>" . $article["price"] . " €</span><p>\n 
+                            <p>Prix unitaire : <span>" . $article['prix'] . " €</span><p>\n 
                         </div>
                     
                         <div class=\"row justify-content-center\">
@@ -294,7 +304,7 @@ function totalPrixArticles(){
     $totalPrixArticles = 0;
 
     for ($i = 0; $i < count($_SESSION['panier']); $i++){
-        $totalPrixArticles += $_SESSION['panier'][$i]['price'] * intval($_SESSION['panier'][$i]['quantite']);
+        $totalPrixArticles += $_SESSION['panier'][$i]['prix'] * intval($_SESSION['panier'][$i]['quantite']);
     }
     return $totalPrixArticles;
 }
