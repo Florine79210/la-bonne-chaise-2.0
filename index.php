@@ -14,8 +14,7 @@
     $listeArticles = getArticles();
 
     if (isset($_POST["idEnvoiAjoutPanier"])){
-        $id = $_POST["idEnvoiAjoutPanier"];
-        $article = getArticleFromId($listeArticles, $id);
+        $article=getArticleBddFromId($_POST['idEnvoiAjoutPanier']);
         ajoutPanier($article);    
     }
 

@@ -1,0 +1,72 @@
+    /* GAMMES */
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.gamme h2 {
+    color: #000000;
+    font-family: 'Lora', Garamond, Arial;
+    font-size: 60px;
+    font-weight: bold;
+}
+
+
+/* ARTICLES */
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.articles_gamme{
+    border-style:solid;
+    border-width: 3px;
+    border-color: #000000;
+}
+
+.articles_gamme h3{
+    font-family: 'Lora', Garamond, Arial;
+    font-weight: bold;
+    font-size: 45px;
+}
+
+.articles_gamme p{
+    font-family: 'Source Sans Pro', Garamond, Arial;
+    font-size: 25px;
+}
+
+.articles_gamme p span{
+    font-weight:bold;
+}
+
+.articles_gamme .btns{
+    border-radius: 20px;
+    border-style: outset;
+    font-family: 'Source Sans Pro', Garamond, Arial;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.articles_gamme .btns:hover{
+    background-color: #ffffff;
+    transform: scale(1.1);
+    transition: 1.5s;
+}
+
+.articles_gamme .btn-ajout-panier{
+    color: #ffffff;
+    background-color: #7e1111;
+    border-color: #7e1111;
+}
+
+.articles_gamme .btn-ajout-panier:hover{
+    color: #7e1111;
+    }
+
+.articles_gamme .btn-details{
+    color:#000000;
+    background-color: #978562;
+    border-color: #978562;
+}
+
+.articles_gamme .btn-details:hover{
+    color:#978562;
+    }
+
+.articles_gamme .image_article{
+    min-width:20vw;
+}

@@ -25,7 +25,6 @@ function getArticles() {
     $listeArticles = $bdd->query('SELECT * FROM articles');
 
     return $listeArticles->fetchAll(PDO::FETCH_ASSOC);
-  
 }
 
 
@@ -85,12 +84,24 @@ function showArticles(){
     }                
 }
 
+
+// <----- Ajouter un article de la BDD via son ID ---------------->
+
+function getArticleBddFromId($id){
+
+    $bdd = get_connection();
+
+    $articleSelectBdd = $bdd->prepare('SELECT * FROM articles WHERE id=?');
+    $articleSelectBdd->execute(array($id));
+
+    return $articleSelectBdd->fetch();
+  
+}
+
         // VOIR LES DETAILS D'UN ARTICLE (PAGE PRODUITS)
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 function showArticleDetails($article){
-
-    $listeArticles = getArticles();
 
     $article['prix'] = number_format($article['prix'], 2, ',', ' ');
 
@@ -132,26 +143,9 @@ function showArticleDetails($article){
 }
 
 
-// <-----Ajouter un article via son ID ---------------->
-
-function getArticleFromId($listeArticles, $id){
-
-    $listeArticles = getArticles();
-
-    foreach ($listeArticles as $article){
-
-        if ($article["id"] == $id){
-            return $article;
-        }
-    }
-}
-
-
 // <-----Ajouter un article au panier ---------------->
 
 function ajoutPanier($article){
-
-    $listeArticles = getArticles();
 
     $articleAjoute = false;
 
@@ -173,8 +167,6 @@ function ajoutPanier($article){
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 function showPanier($nomDePage){
-
-    $listeArticles = getArticles();
 
     foreach ($_SESSION["panier"] as $article){
 
@@ -235,17 +227,17 @@ function modifierQuantite(){
 
  function supprArticle(){
 
-        for ($i = 0; $i < count($_SESSION['panier']); $i++){
+    for ($i = 0; $i < count($_SESSION['panier']); $i++){
 
-            if ($_SESSION['panier'][$i]['id'] == $_POST["idSupprimerArticle"]){
-                array_splice($_SESSION['panier'], $i, 1);
-                echo "<script> alert(\"Article retiré du panier\");</script>";
-            } 
+        if ($_SESSION['panier'][$i]['id'] == $_POST["idSupprimerArticle"]){
+            array_splice($_SESSION['panier'], $i, 1);
+            echo "<script> alert(\"Article retiré du panier\");</script>";
+        } 
 
-            if (empty ($_SESSION['panier'])){
-                echo "<p class=\"text-center message-panier-vide\">Le panier est <span>vide</span>.</p>";
-            }
+        if (empty ($_SESSION['panier'])){
+            echo "<p class=\"text-center message-panier-vide\">Le panier est <span>vide</span>.</p>";
         }
+    }
  }
 
 
@@ -253,27 +245,27 @@ function modifierQuantite(){
 
 function afficherBoutons(){
 
-        if (!empty($_SESSION["panier"])){
+    if (!empty($_SESSION["panier"])){
 
-            echo "<div class=\"container mt-5 mb-5 valider_vider\">
-                    <div class=\"row\">
+        echo "<div class=\"container mt-5 mb-5 valider_vider\">
+                <div class=\"row\">
 
-                        <div class=\"col-md-6 text-center\">
-                            <a href=\"validation.php\">
-                                <button class=\"pt-2 pr-3 pb-2 pl-3 btns btn_valider\"> Valider le panier </button>
-                            </a>  
-                        </div>
-
-                        <div class=\"col-md-6 text-center\">
-                            <form action=\"index.php\" method=\"post\">
-                                <input type=\"hidden\" name=\"viderPanier\" value=\"true\">
-                                <button  class=\"pt-2 pr-3 pb-2 pl-3 btns btn_vider\"type=\"submit\"> Vider le panier </button>   
-                            </form>
-                        </div>
-
+                    <div class=\"col-md-6 text-center\">
+                        <a href=\"validation.php\">
+                            <button class=\"pt-2 pr-3 pb-2 pl-3 btns btn_valider\"> Valider le panier </button>
+                        </a>  
                     </div>
-                </div>";  
-        }
+
+                    <div class=\"col-md-6 text-center\">
+                        <form action=\"index.php\" method=\"post\">
+                            <input type=\"hidden\" name=\"viderPanier\" value=\"true\">
+                            <button  class=\"pt-2 pr-3 pb-2 pl-3 btns btn_vider\"type=\"submit\"> Vider le panier </button>   
+                        </form>
+                    </div>
+
+                </div>
+            </div>";  
+    }
 }
 
 
@@ -281,8 +273,8 @@ function afficherBoutons(){
 
 function viderPanier(){
 
-        $_SESSION['panier'] = array();
-        echo "<script> alert(\"Le panier est vide.\");</script>";   
+    $_SESSION['panier'] = array();
+    echo "<script> alert(\"Le panier est vide.\");</script>";   
 }
 
 
@@ -354,5 +346,134 @@ function affichageTotalARegler(){
         echo "<p class=\"text-center total_a_regler\">Total à régler : <span>" . $totalARegler . " €</span></p>";
     }
 }
+
+
+// <----- LISTE DES GAMMES ---------------->
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+function getGammes() {
+
+    $bdd = get_connection();
+
+    $listeGammes = $bdd->query('SELECT * FROM gammes');
+
+    return $listeGammes->fetchAll(PDO::FETCH_ASSOC);
+}
+
+// <----- LISTE DES ARTICLES D'UNE GAMME ---------------->
+
+function getArticleGammeBddFromId($id){
+
+    $bdd = get_connection();
+
+    $listeArticlesGammes = $bdd->prepare('SELECT * FROM articles WHERE id_gamme=?');
+    $listeArticlesGammes->execute(array($id));
+
+    return $listeArticlesGammes->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+// <----- AFFICHER LES GAMMES ET LEURS ARTICLES ---------------->
+
+function showGammes(){
+
+    $listeGammes = getGammes();
+
+    foreach ($listeGammes as $gamme){
+
+        echo "<div class=\"container gamme\">
+
+                <div class=\"row justify-content-center\">
+                    <h2>" . $gamme['nom_gamme'] . "<h2\n
+                </div>
+            </div>";
+    
+
+        $listeArticlesGammes = getArticleGammeBddFromId($gamme['id']);
+
+        foreach ($listeArticlesGammes as $article){
+
+            $article['prix'] = number_format($article['prix'], 2, ',', ' ');
+
+            echo "<div class=\"container mt-5 mb-5 p-5 articles_gamme\">
+
+                    <div class=\"row\">
+
+                        <div class=\"col-md-6 pl-5\">
+                            <div class=\"row mb-5 pt-3 text-center\">
+                                <h3>" .  $article['nom'] . "<h3>\n
+                            </div>
+                    
+                            <div class=\"row pr-5\"> 
+                                <p>" . $article['description'] . "<p>\n
+                            </div>            
+                        </div>  
+
+                        <div class=\"col-md-6\">
+                            <div class=\"row justify-content-center\">
+                                <img class=\"image_article\" src=\"images/" . $article['image'] . "\">
+                            </div>
+
+                            <div class=\"row mb-3 justify-content-center\">
+                                <p>Prix unitaire : <span>" . $article['prix'] . " €</span><p>\n
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class=\"row\">
+                        <div class=\"col-md-6 text-center\">
+                            <form action=\"index.php\" method=\"post\">        
+                                <input type=\"hidden\" name= \"idEnvoiAjoutPanier\" value=\"" . $article["id"] . "\">
+                                <input class=\"mt-3 pt-2 pr-3 pb-2 pl-3 btns btn-ajout-panier\"type=\"submit\" name=\"ajoutPanier\" value=\"Ajouter au panier\">
+                            </form>
+                        </div>
+
+                        <div class=\"col-md-6 text-center\">
+                            <form action=\"produit.php\" method=\"post\">       
+                                <input type=\"hidden\" name= \"idDetailsproduit\" value=\"" . $article["id"] . "\">
+                                <input class=\"mt-3 pt-2 pr-3 pb-2 pl-3 btns btn-details\" type=\"submit\" name=\"detailsProduit\" value=\"Détails du produit\">
+                             </form>
+                        </div>
+                    </div>    
+
+                </div>";  
+        }
+    }                
+}
+
+
+// <----- CONNEXION ---------------->
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                echo "<div class=\"container\">
+                        <div class=\"row justify-content-center\">
+                            <form action=\"index.php\" method=\"post\">
+
+                                <div class=\"row\">
+                                    <p>Email :<p>
+                                    <input type=\"hidden\" name=\"idModifierQuantite\" value=\"" .$article['id']. "\">
+                                    <input class=\"mr-3 btn-saisie-nbr\" type=\"number\" name=\"nouvelleQuantite\" min=\"1\" max=\"12\" value=\"" .$article['quantite']. "\"> 
+                                </div>
+
+                                <div class=\"row\">
+                                    <p>Mot de passe :<p>
+                                    <input type=\"hidden\" name=\"idModifierQuantite\" value=\"" .$article['id']. "\">
+                                    <input class=\"mr-3 btn-saisie-nbr\" type=\"number\" name=\"nouvelleQuantite\" min=\"1\" max=\"12\" value=\"" .$article['quantite']. "\"> 
+                                </div>
+
+                                <div class=\"row\">
+                                    <input type=\"hidden\" name=\"idModifierQuantite\" value=\"" .$article['id']. "\">
+                                    <input type=\"number\" name=\"nouvelleQuantite\" min=\"1\" max=\"12\" value=\"" .$article['quantite']. "\"> 
+                                    <button class=\" pt-2 pr-3 pb-2 pl-3 btns btn_modif\" type=\"submit\"> Modifier </button>
+                                </div>
+
+                            </form>   
+                        </div>
+                    </div>
+
+
+// <----- INSCRITION ---------------->
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 
 ?>
