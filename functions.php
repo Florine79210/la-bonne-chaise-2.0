@@ -1,12 +1,11 @@
 <?php
 
-function get_connection(){
+function get_connection()
+{
 
     try {
-        $bdd = new PDO('mysql:host=localhost;dbname=boutique_en_ligne;charset=utf8', 'florine', 'Stell@1914bl0*', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));    
-    }
-    
-    catch (Exception $e){
+        $bdd = new PDO('mysql:host=localhost;dbname=boutique_en_ligne;charset=utf8', 'florine', 'Stell@1914bl0*', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+    } catch (Exception $e) {
         die('Erreur : ' . $e->getMessage());
     }
 
@@ -15,10 +14,11 @@ function get_connection(){
 
 
 
-        // LISTE DES ARTICLES
+// LISTE DES ARTICLES
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-function getArticles() {
+function getArticles()
+{
 
     $bdd = get_connection();
 
@@ -28,14 +28,15 @@ function getArticles() {
 }
 
 
-        // VOIR LES ARTICLES (PAGE D'ACCUEIL)
+// VOIR LES ARTICLES (PAGE D'ACCUEIL)
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-function showArticles(){
+function showArticles()
+{
 
     $listeArticles = getArticles();
 
-    foreach ($listeArticles as $article){
+    foreach ($listeArticles as $article) {
 
         $article['prix'] = number_format($article['prix'], 2, ',', ' ');
 
@@ -80,14 +81,15 @@ function showArticles(){
                     </div>
                 </div>    
 
-            </div>";  
-    }                
+            </div>";
+    }
 }
 
 
 // <----- Ajouter un article de la BDD via son ID ---------------->
 
-function getArticleBddFromId($id){
+function getArticleBddFromId($id)
+{
 
     $bdd = get_connection();
 
@@ -95,17 +97,17 @@ function getArticleBddFromId($id){
     $articleSelectBdd->execute(array($id));
 
     return $articleSelectBdd->fetch();
-  
 }
 
-        // VOIR LES DETAILS D'UN ARTICLE (PAGE PRODUITS)
+// VOIR LES DETAILS D'UN ARTICLE (PAGE PRODUITS)
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-function showArticleDetails($article){
+function showArticleDetails($article)
+{
 
     $article['prix'] = number_format($article['prix'], 2, ',', ' ');
 
-        echo "<div class=\"container mt-5 mb-5 p-5 details_article\">
+    echo "<div class=\"container mt-5 mb-5 p-5 details_article\">
                 <div class=\"row\">
 
                     <div class=\"col-md-6 pl-5\">
@@ -139,36 +141,38 @@ function showArticleDetails($article){
                     </div>
                 </div>
 
-            </div>";                 
+            </div>";
 }
 
 
 // <-----Ajouter un article au panier ---------------->
 
-function ajoutPanier($article){
+function ajoutPanier($article)
+{
 
     $articleAjoute = false;
 
-    foreach ($_SESSION["panier"] as $articlePanier){
-        if ($articlePanier ["id"] == $article ["id"]){
+    foreach ($_SESSION["panier"] as $articlePanier) {
+        if ($articlePanier["id"] == $article["id"]) {
             echo "<script> alert(\"Article déjà présent dans le panier !\");</script>";
             $articleAjoute = true;
         }
     }
 
-    if (!$articleAjoute){
+    if (!$articleAjoute) {
         $article['quantite'] = 1;
         array_push($_SESSION['panier'], $article);
     }
 }
 
 
-        // VOIR LE PANIER (PAGE PANIER & VALIDATION)
+// VOIR LE PANIER (PAGE PANIER & VALIDATION)
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-function showPanier($nomDePage){
+function showPanier($nomDePage)
+{
 
-    foreach ($_SESSION["panier"] as $article){
+    foreach ($_SESSION["panier"] as $article) {
 
         $article['prix'] = number_format($article['prix'], 2, ',', ' ');
 
@@ -186,66 +190,69 @@ function showPanier($nomDePage){
                         </div>
                     
                         <div class=\"row justify-content-center\">
-                            <form class=\"form-row\" action=\"".$nomDePage."\" method=\"post\">
+                            <form class=\"form-row\" action=\"" . $nomDePage . "\" method=\"post\">
                                 <p class=\"mt-2 mr-2\" >Quantité :<p>
-                                <input type=\"hidden\" name=\"idModifierQuantite\" value=\"" .$article['id']. "\">
-                                <input class=\"mr-3 btn-saisie-nbr\" type=\"number\" name=\"nouvelleQuantite\" min=\"1\" max=\"12\" value=\"" .$article['quantite']. "\"> 
+                                <input type=\"hidden\" name=\"idModifierQuantite\" value=\"" . $article['id'] . "\">
+                                <input class=\"mr-3 btn-saisie-nbr\" type=\"number\" name=\"nouvelleQuantite\" min=\"1\" max=\"12\" value=\"" . $article['quantite'] . "\"> 
                                 <button class=\" pt-2 pr-3 pb-2 pl-3 btns btn_modif\" type=\"submit\"> Modifier </button>
                             </form>   
                         </div>
                     </div>
 
                     <div class=\"col-md-4 text-center\">
-                        <form action=\"".$nomDePage."\" method=\"post\">
-                            <input type=\"hidden\" name=\"idSupprimerArticle\" value=\"" .$article['id']. "\"> 
+                        <form action=\"" . $nomDePage . "\" method=\"post\">
+                            <input type=\"hidden\" name=\"idSupprimerArticle\" value=\"" . $article['id'] . "\"> 
                             <button class=\" pt-2 pr-3 pb-2 pl-3 btns btn_suppr\" type=\"submit\"> Supprimer l'article </button>
                         </form>
                     </div>
                     
                 </div>
-            </div>";  
+            </div>";
     }
 }
 
 
 // <-----Modifier la quantité d'un article ---------------->
 
-function modifierQuantite(){
+function modifierQuantite()
+{
 
     $idModifierQuantite = $_POST["idModifierQuantite"];
 
-        for ($i = 0; $i < count($_SESSION['panier']); $i++){
+    for ($i = 0; $i < count($_SESSION['panier']); $i++) {
 
-            if ($_SESSION['panier'][$i]['id'] == $idModifierQuantite){
-                $_SESSION['panier'][$i]['quantite'] = $_POST['nouvelleQuantite'];
-            }
+        if ($_SESSION['panier'][$i]['id'] == $idModifierQuantite) {
+            $_SESSION['panier'][$i]['quantite'] = $_POST['nouvelleQuantite'];
         }
+    }
 }
- 
+
 
 // <-----Supprimer un article ---------------->
 
- function supprArticle(){
+function supprArticle()
+{
 
-    for ($i = 0; $i < count($_SESSION['panier']); $i++){
+    for ($i = 0; $i < count($_SESSION['panier']); $i++) {
 
-        if ($_SESSION['panier'][$i]['id'] == $_POST["idSupprimerArticle"]){
+        if ($_SESSION['panier'][$i]['id'] == $_POST["idSupprimerArticle"]) {
             array_splice($_SESSION['panier'], $i, 1);
             echo "<script> alert(\"Article retiré du panier\");</script>";
-        } 
+        }
 
-        if (empty ($_SESSION['panier'])){
+        if (empty($_SESSION['panier'])) {
             echo "<p class=\"text-center message-panier-vide\">Le panier est <span>vide</span>.</p>";
         }
     }
- }
+}
 
 
 // <-----Afficher les boutons Valider & Vider le panier (PAGE PANIER) ---------------->
 
-function afficherBoutons(){
+function afficherBoutons()
+{
 
-    if (!empty($_SESSION["panier"])){
+    if (!empty($_SESSION["panier"])) {
 
         echo "<div class=\"container mt-5 mb-5 valider_vider\">
                 <div class=\"row\">
@@ -264,44 +271,48 @@ function afficherBoutons(){
                     </div>
 
                 </div>
-            </div>";  
+            </div>";
     }
 }
 
 
 // <-----Vider le Panier ---------------->
 
-function viderPanier(){
+function viderPanier()
+{
 
     $_SESSION['panier'] = array();
-    echo "<script> alert(\"Le panier est vide.\");</script>";   
+    echo "<script> alert(\"Le panier est vide.\");</script>";
 }
 
 
 // <-----Calculs et affichages pour le Panier ---------------->
 
-function nbrArticlesPanier(){
+function nbrArticlesPanier()
+{
 
     $nbrArticlesPanier = 0;
 
-    for ($i = 0; $i < count($_SESSION['panier']); $i++){
+    for ($i = 0; $i < count($_SESSION['panier']); $i++) {
         $nbrArticlesPanier += intval($_SESSION['panier'][$i]['quantite']);
     }
     return $nbrArticlesPanier;
 }
 
 
-function totalPrixArticles(){
+function totalPrixArticles()
+{
 
     $totalPrixArticles = 0;
 
-    for ($i = 0; $i < count($_SESSION['panier']); $i++){
+    for ($i = 0; $i < count($_SESSION['panier']); $i++) {
         $totalPrixArticles += $_SESSION['panier'][$i]['prix'] * intval($_SESSION['panier'][$i]['quantite']);
     }
     return $totalPrixArticles;
 }
 
-function affichageTotalPrixArticles(){
+function affichageTotalPrixArticles()
+{
     $totalPrixArticles = totalPrixArticles();
 
     if ($_SESSION['panier']) {
@@ -311,16 +322,18 @@ function affichageTotalPrixArticles(){
 }
 
 
-function totalFraisPort(){
+function totalFraisPort()
+{
     $totalFraisPort = 0;
 
-    for ($i = 0; $i < count($_SESSION['panier']); $i++){
+    for ($i = 0; $i < count($_SESSION['panier']); $i++) {
         $totalFraisPort += 12.49 * intval($_SESSION['panier'][$i]['quantite']);
     }
     return $totalFraisPort;
 }
 
-function affichageTotalFraisPort(){
+function affichageTotalFraisPort()
+{
     $totalFraisPort = totalFraisPort();
 
     if ($_SESSION['panier']) {
@@ -330,15 +343,17 @@ function affichageTotalFraisPort(){
 }
 
 
-function totalARegler(){
-    
+function totalARegler()
+{
+
     $totalPrixArticles = totalPrixArticles();
     $totalFraisPort = totalFraisPort();
 
     return $totalPrixArticles + $totalFraisPort;
 }
 
-function affichageTotalARegler(){
+function affichageTotalARegler()
+{
     $totalARegler = totalARegler();
 
     if ($_SESSION['panier']) {
@@ -351,7 +366,8 @@ function affichageTotalARegler(){
 // <----- LISTE DES GAMMES ---------------->
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-function getGammes() {
+function getGammes()
+{
 
     $bdd = get_connection();
 
@@ -362,7 +378,8 @@ function getGammes() {
 
 // <----- LISTE DES ARTICLES D'UNE GAMME ---------------->
 
-function getArticleGammeBddFromId($id){
+function getArticleGammeBddFromId($id)
+{
 
     $bdd = get_connection();
 
@@ -375,11 +392,12 @@ function getArticleGammeBddFromId($id){
 
 // <----- AFFICHER LES GAMMES ET LEURS ARTICLES ---------------->
 
-function showGammes(){
+function showGammes()
+{
 
     $listeGammes = getGammes();
 
-    foreach ($listeGammes as $gamme){
+    foreach ($listeGammes as $gamme) {
 
         echo "<div class=\"container gamme\">
 
@@ -387,11 +405,11 @@ function showGammes(){
                     <h2>" . $gamme['nom_gamme'] . "<h2\n
                 </div>
             </div>";
-    
+
 
         $listeArticlesGammes = getArticleGammeBddFromId($gamme['id']);
 
-        foreach ($listeArticlesGammes as $article){
+        foreach ($listeArticlesGammes as $article) {
 
             $article['prix'] = number_format($article['prix'], 2, ',', ' ');
 
@@ -436,44 +454,238 @@ function showGammes(){
                         </div>
                     </div>    
 
-                </div>";  
+                </div>";
         }
-    }                
+    }
 }
 
 
 // <----- CONNEXION ---------------->
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-                echo "<div class=\"container\">
-                        <div class=\"row justify-content-center\">
-                            <form action=\"index.php\" method=\"post\">
 
-                                <div class=\"row\">
-                                    <p>Email :<p>
-                                    <input type=\"hidden\" name=\"idModifierQuantite\" value=\"" .$article['id']. "\">
-                                    <input class=\"mr-3 btn-saisie-nbr\" type=\"number\" name=\"nouvelleQuantite\" min=\"1\" max=\"12\" value=\"" .$article['quantite']. "\"> 
-                                </div>
+// function connexion($client){
 
-                                <div class=\"row\">
-                                    <p>Mot de passe :<p>
-                                    <input type=\"hidden\" name=\"idModifierQuantite\" value=\"" .$article['id']. "\">
-                                    <input class=\"mr-3 btn-saisie-nbr\" type=\"number\" name=\"nouvelleQuantite\" min=\"1\" max=\"12\" value=\"" .$article['quantite']. "\"> 
-                                </div>
+//     $bdd = get_connection();
 
-                                <div class=\"row\">
-                                    <input type=\"hidden\" name=\"idModifierQuantite\" value=\"" .$article['id']. "\">
-                                    <input type=\"number\" name=\"nouvelleQuantite\" min=\"1\" max=\"12\" value=\"" .$article['quantite']. "\"> 
-                                    <button class=\" pt-2 pr-3 pb-2 pl-3 btns btn_modif\" type=\"submit\"> Modifier </button>
-                                </div>
+//     $connexion = $bdd->query('SELECT * FROM clients');
+//     while($client = $connexion->fetch()){
 
-                            </form>   
+//     }
+
+//     if(isset($_POST['connexion'])){
+//         extract($_POST);
+
+//         if(!empty($Email) && !empty($motDePasse) && !empty($motDePasse2)){
+
+//             $options = ['cost' => 12];
+//             $hashpass = password_hash($motDePasse, PASSWORD_BCRYPT, $options);
+
+//             if($motDePasse == $motDePasse2){
+
+
+//             echo "<p>Bienvenue ". $client['prenom'] ." ". $client['nom'] ." <p>";
+//         }
+//     }
+// }
+
+function formulaireDeConnexion()
+{
+    // $connexion = connexion($client['id']);
+
+    // foreach ($connexion as $client){
+
+    echo "<div class=\"container\">
+                <div class=\"row justify-content-center\">
+                    <form action=\"index.php\" method=\"post\">
+
+                        <div class=\"row\">
+                            <p>Email : <p>
+                            <input type=\"email\" name=\"Email\" placeholder=\"Votre Email '@'\" value=\"" . "\" required>
                         </div>
-                    </div>
+
+                        <div class=\"row\">
+                            <p>Mot de passe : <p>
+                            <input type=\"password\" name=\"motDePasse\" placeholder=\"Votre mot de passe\" value=\"" . "\" required>
+                        </div>
+
+                        <div class=\"row justify-content-center\">
+                            <p>Mot de passe : <p>
+                            <input type=\"password\" name=\"motDePasse2\" placeholder=\"Confirmez votre mot de passe\" value=\"" . "\" required>
+                        </div>
+
+                        <div class=\"row justify-content-center\">
+                            <button class=\" btns btnConnexion\" type=\"submit\" name=\"connexion\" required> Connexion </button>
+                        </div>
+
+                    </form>   
+                </div>
+            </div>";
+}
+
 
 
 // <----- INSCRITION ---------------->
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+function limiteCaracteresInputs()
+{
+
+    $longueurInputsOk = true;
+
+    if (strlen($_POST['nom']) < 3 || strlen($_POST['nom']) > 25) {
+        $longueurInputsOk = false;
+    }
+
+    if (strlen($_POST['prenom']) < 2 || strlen($_POST['prenom']) > 25) {
+        $longueurInputsOk = false;
+    }
+
+    if (strlen($_POST['Email']) < 8 || strlen($_POST['Email']) > 40) {
+        $longueurInputsOk = false;
+    }
+
+    if (strlen($_POST['adresse']) < 8 || strlen($_POST['adresse']) > 80) {
+        $longueurInputsOk = false;
+    }
+
+    if (strlen($_POST['codePostal']) !== 5) {
+        $longueurInputsOk = false;
+    }
+
+    if (strlen($_POST['ville']) < 4 || strlen($_POST['ville']) > 40) {
+        $longueurInputsOk = false;
+    }
+
+    return $longueurInputsOk;
+}
 
 
-?>
+function verifMotDePasse()
+{
+
+    $passwordSecur = false;
+
+    // minimum 8 caractères et maximum 15, minimum 1 minuscule, 1 majuscule, 1 nombre et 1 caractère spécial
+    $regex = "^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,15}$^";
+
+    if (preg_match($regex, $_POST['motDePasse'])) {
+        $passwordSecur = true;
+    }
+
+    return $passwordSecur;
+}
+
+function inscription()
+{
+    $bdd = get_connection();
+
+    extract($_POST);
+
+    if (!empty($nom) && !empty($prenom) && !empty($adresse) && !empty($codePostal) && !empty($ville) && !empty($Email) && !empty($motDePasse) && !empty($motDePasse2)) {
+
+        if (!limiteCaracteresInputs()) {
+            echo '<script>alert(\'Longueur d\'un ou plusieurs champs incorrect !\')</script>';
+        } else {
+
+            if (!($motDePasse == $motDePasse2)) {
+                echo '<script>alert(\'Les mots de passe sont différents !\')</script>';
+            } else {
+
+                if (!verifMotDePasse()) {
+                    echo '<script>alert(\'La sécuritée du mot de passe est insufisante !\')</script>';
+                } else {
+
+                    $options = ['cost' => 12];
+                    $hashpass = password_hash(strip_tags($motDePasse), PASSWORD_BCRYPT, $options);
+
+                    $inscription = $bdd->prepare('INSERT INTO clients (nom, prenom, email, mot_de_passe) VALUES (:nom, :prenom, :email, :mot_de_passe)');
+                    $validationInscription = $inscription->execute([
+                        'nom' => strip_tags($nom),
+                        'prenom' => strip_tags($prenom),
+                        'email' => strip_tags($Email),
+                        'mot_de_passe' => $hashpass
+                    ]);
+
+                    if ($validationInscription) {
+                        echo '<script>alert(\'Le compte a bien été créé !\')</script>';
+
+                        $idClient = $bdd->lastInsertId();
+
+                        $transmitionAdresseClient = $bdd->prepare('INSERT INTO adresses (id_client, adresse, code_postal, ville) VALUES (:id_client, :adresse, :code_postal, :ville)');
+                        $transmitionAdresseClient->execute([
+                            'id_client' => $idClient,
+                            'adresse' => strip_tags($adresse),
+                            'code_postal' => strip_tags($codePostal),
+                            'ville' => strip_tags($ville),
+                        ]);
+                    } else {
+                        echo '<script>alert(\'Echec! le compte n\'a pas été créé !\')</script>';
+                    }
+                }
+            }
+        }
+    }
+}
+
+function formulaireDInscription()
+{
+
+    $inscription = inscription();
+
+    echo "<div class=\"container\">
+            
+                <form action=\"connexion.php\" method=\"post\">
+                    <div class=\"row\">
+                        <div class=\"col md-6\">
+                            <div class=\"row justify-content-center\">
+                                <p>Nom : <p>
+                                <input type=\"text\" name=\"nom\" placeholder=\"Votre Nom\" value=\"" . "\" required>
+                            </div>
+
+                            <div class=\"row justify-content-center\">
+                                <p>Prénom : <p>
+                                <input type=\"text\" name=\"prenom\" placeholder=\"Votre Prénom\" required>
+                            </div>
+
+                            <div class=\"row justify-content-center\">
+                                <p>Adresse : <p>
+                                <input type=\"text\" name=\"adresse\" placeholder=\"Votre adresse\" required>
+                            </div>
+
+                            <div class=\"row justify-content-center\">
+                                <p>Code Postal : <p>
+                                <input type=\"text\" name=\"codePostal\" placeholder=\"Votre code postal\" required>
+                            </div>
+
+                            <div class=\"row justify-content-center\">
+                                <p>Ville : <p>
+                                <input type=\"text\" name=\"ville\" placeholder=\"Votre ville\" required>
+                            </div>
+                        </div>
+
+                        <div class=\"col md-6\">
+                            <div class=\"row justify-content-center\">
+                                <p>Email : <p>
+                                <input type=\"email\" name=\"Email\" placeholder=\"Votre Email '@'\" required>
+                            </div>
+
+                            <div class=\"row justify-content-center\">
+                                <p>Mot de passe : <p>
+                                <input type=\"password\" name=\"motDePasse\" placeholder=\"Votre mot de passe\" required>
+                            </div>
+
+                            <div class=\"row justify-content-center\">
+                                <p>Mot de passe : <p>
+                                <input type=\"password\" name=\"motDePasse2\" placeholder=\"Confirmez votre mot de passe\" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class=\"row justify-content-center\">
+                        <button class=\" btns btnInscription\" type=\"submit\" name=\"inscription\" required> Inscription </button>
+                    </div>
+                
+                </form>   
+            
+            </div>";
+}
