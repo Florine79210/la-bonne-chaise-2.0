@@ -15,7 +15,23 @@
                 <a class="nav-link mt-3 mr-2 ml-2" href="index.php"><span>Acceuil</span></a>
                 <a class="nav-link mt-3 mr-2 ml-2" href="gammes.php"><span>Nos Gammes</span></a>
                 <a class="nav-link mt-3 mr-2 ml-2" href="panier.php"><i class="fas fa-shopping-basket"></i><span class="quantite-panier"> (<?php echo nbrArticlesPanier(); ?>)</span></a>
-                <a class="nav-link mr-2 ml-2" href="connexion.php"><span>Connexion<br>Inscription</span></a>
+
+                <?php
+                    if (isset ($_SESSION['email'])){
+
+                        echo "<a class=\"nav-link mt-3 mr-2 ml-2\">
+                                <form class=\"btnDeDeconnexion\" action=\"index.php\" method=\"post\">
+                                    <i class=\"far fa-user\"></i>
+                                    <input type=\"hidden\" name=\"btnDeconnexion\">
+                                    <input id=\"btnDeco\" style=\"border: none\" type=\"submit\" value=\" Déconnexion\">
+                                </form>
+                            </a>";
+
+                    } else {
+                        echo "<a class=\"nav-link mt-3 mr-2 ml-2\" href=\"connexion.php\"><i class=\"far fa-user\"></i><span class=\"btnConnexionInscription\"><br>Connexion/Inscription</span></a>";
+                    }
+                ?>
+
             </div>
             <div class="row mt-1 mr-3 ml-5 reseaux">
                 <a class="nav-link mt-3" href="https://www.facebook.fr"><i class="fab fa-facebook-square"></i></a>

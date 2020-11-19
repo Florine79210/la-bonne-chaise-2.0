@@ -406,7 +406,6 @@ function showGammes()
                 </div>
             </div>";
 
-
         $listeArticlesGammes = getArticleGammeBddFromId($gamme['id']);
 
         foreach ($listeArticlesGammes as $article) {
@@ -463,65 +462,53 @@ function showGammes()
 // <----- CONNEXION ---------------->
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-// function connexion($client){
+function connexion(){
 
-//     $bdd = get_connection();
+    extract($_POST);
 
-//     $connexion = $bdd->query('SELECT * FROM clients');
-//     while($client = $connexion->fetch()){
+    if(empty($Email) || empty($motDePasse) || empty($motDePasse2)) {
+        echo "<div class=\"container w-50 text-center p-3 mt-2 bg-danger\"> Un ou plusieurs champs sont vides !</div>";
 
-//     }
+        }else {
 
-//     if(isset($_POST['connexion'])){
-//         extract($_POST);
+            if(!($motDePasse == $motDePasse2)){
+                echo "<div class=\"container w-50 text-center p-3 mt-2 bg-danger\"> Les mots de passe sont différents !</div>";
 
-//         if(!empty($Email) && !empty($motDePasse) && !empty($motDePasse2)){
+            }else {
+                $bdd = get_connection();
 
-//             $options = ['cost' => 12];
-//             $hashpass = password_hash($motDePasse, PASSWORD_BCRYPT, $options);
+                $requete = $bdd->prepare('SELECT * FROM clients WHERE email=?');
+                $requete->execute([strip_tags($Email)]);
+                $resultat = $requete->fetch(PDO::FETCH_ASSOC);
 
-//             if($motDePasse == $motDePasse2){
+                if (!$resultat){
+                    echo "<div class=\"container w-50 text-center p-3 mt-2 bg-danger\"> Adresse email INCONNUE !</div>";
 
+                } else {
+                    $motDePassCorrect = password_verify($motDePasse, $resultat['mot_de_passe']);
 
-//             echo "<p>Bienvenue ". $client['prenom'] ." ". $client['nom'] ." <p>";
-//         }
-//     }
-// }
+                    if (!$motDePassCorrect){
+                        echo "<div class=\"container w-50 text-center p-3 mt-2 bg-danger\"> Le mot de passe est incorrect !</div>";
 
-function formulaireDeConnexion()
-{
-    // $connexion = connexion($client['id']);
+                    }else {
+                        $requete = $bdd->prepare('SELECT * FROM adresses WHERE id_client=?');
+                        $requete->execute([$resultat['id']]);
+                        $adresseClient = $requete -> fetch(PDO::FETCH_ASSOC);
 
-    // foreach ($connexion as $client){
+                        $_SESSION['id'] = $resultat['id'];
+                        $_SESSION['nom'] = $resultat['nom'];
+                        $_SESSION['prenom'] = $resultat['prenom'];
+                        $_SESSION['email'] = $resultat['email'];
+                        $_SESSION['adresse'] = $adresseClient;
 
-    echo "<div class=\"container\">
-                <div class=\"row justify-content-center\">
-                    <form action=\"index.php\" method=\"post\">
+                        var_dump($_SESSION); 
 
-                        <div class=\"row\">
-                            <p>Email : <p>
-                            <input type=\"email\" name=\"Email\" placeholder=\"Votre Email '@'\" value=\"" . "\" required>
-                        </div>
-
-                        <div class=\"row\">
-                            <p>Mot de passe : <p>
-                            <input type=\"password\" name=\"motDePasse\" placeholder=\"Votre mot de passe\" value=\"" . "\" required>
-                        </div>
-
-                        <div class=\"row justify-content-center\">
-                            <p>Mot de passe : <p>
-                            <input type=\"password\" name=\"motDePasse2\" placeholder=\"Confirmez votre mot de passe\" value=\"" . "\" required>
-                        </div>
-
-                        <div class=\"row justify-content-center\">
-                            <button class=\" btns btnConnexion\" type=\"submit\" name=\"connexion\" required> Connexion </button>
-                        </div>
-
-                    </form>   
-                </div>
-            </div>";
+                        echo "<div class=\"container w-50 text-center p-3 mt-2 bg-success\"> Bienvenue " . $resultat['prenom'] ." ". $resultat['nom'] . " !</div>";
+                    }
+            }     
+        }
+    }
 }
-
 
 
 // <----- INSCRITION ---------------->
@@ -560,20 +547,23 @@ function limiteCaracteresInputs()
 }
 
 
-function verifMotDePasse()
-{
+// function verifMotDePasse()
+// {
+//     $passwordSecur = false;
 
-    $passwordSecur = false;
+//     // au moins 1 chiffre et 1 lettre, entre 8 et 15 caractères
+//     $regex = "^(?=.[0-9])(?=.[a-zA-Z])(?=\S+$).{8,15}$^";
 
-    // minimum 8 caractères et maximum 15, minimum 1 minuscule, 1 majuscule, 1 nombre et 1 caractère spécial
-    $regex = "^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,15}$^";
+//     var_dump($_POST['motDePasse']);
 
-    if (preg_match($regex, $_POST['motDePasse'])) {
-        $passwordSecur = true;
-    }
+//     if (preg_match($regex, $_POST['motDePasse'])) {
+//         $passwordSecur = true;
+//     }
 
-    return $passwordSecur;
-}
+//     var_dump($passwordSecur);
+//     return $passwordSecur;
+// }
+
 
 function inscription()
 {
@@ -591,9 +581,9 @@ function inscription()
                 echo '<script>alert(\'Les mots de passe sont différents !\')</script>';
             } else {
 
-                if (!verifMotDePasse()) {
-                    echo '<script>alert(\'La sécuritée du mot de passe est insufisante !\')</script>';
-                } else {
+                // if (!verifMotDePasse()) {
+                //     echo '<script>alert(\'La sécuritée du mot de passe est insufisante !\')</script>';
+                // } else {
 
                     $options = ['cost' => 12];
                     $hashpass = password_hash(strip_tags($motDePasse), PASSWORD_BCRYPT, $options);
@@ -621,7 +611,7 @@ function inscription()
                     } else {
                         echo '<script>alert(\'Echec! le compte n\'a pas été créé !\')</script>';
                     }
-                }
+                // }
             }
         }
     }
@@ -629,61 +619,62 @@ function inscription()
 
 function formulaireDInscription()
 {
-
     $inscription = inscription();
 
-    echo "<div class=\"container\">
+    echo "<div class=\"container mb-5\">
             
                 <form action=\"connexion.php\" method=\"post\">
-                    <div class=\"row\">
-                        <div class=\"col md-6\">
-                            <div class=\"row justify-content-center\">
-                                <p>Nom : <p>
-                                <input type=\"text\" name=\"nom\" placeholder=\"Votre Nom\" value=\"" . "\" required>
+                    <div class=\"row pt-3 formulaires formulaire-inscription\">
+                        <div class=\"col md-6 pr-5\">
+                            <div class=\"row justify-content-end\">
+                                <p class=\"mr-2\">Nom : <p>
+                                <input class=\"text-center\" type=\"text\" name=\"nom\" placeholder=\"Votre Nom\" required>
                             </div>
 
-                            <div class=\"row justify-content-center\">
-                                <p>Prénom : <p>
-                                <input type=\"text\" name=\"prenom\" placeholder=\"Votre Prénom\" required>
+                            <div class=\"row justify-content-end\">
+                                <p class=\"mr-2\">Prénom : <p>
+                                <input class=\"text-center\" type=\"text\" name=\"prenom\" placeholder=\"Votre Prénom\" required>
                             </div>
 
-                            <div class=\"row justify-content-center\">
-                                <p>Adresse : <p>
-                                <input type=\"text\" name=\"adresse\" placeholder=\"Votre adresse\" required>
+                            <div class=\"row justify-content-end\">
+                                <p class=\"mr-2\">Adresse : <p>
+                                <input class=\"text-center\" type=\"text\" name=\"adresse\" placeholder=\"Votre adresse\" required>
                             </div>
 
-                            <div class=\"row justify-content-center\">
-                                <p>Code Postal : <p>
-                                <input type=\"text\" name=\"codePostal\" placeholder=\"Votre code postal\" required>
+                            <div class=\"row justify-content-end\">
+                                <p class=\"mr-2\">Code Postal : <p>
+                                <input class=\"text-center\" type=\"text\" name=\"codePostal\" placeholder=\"Votre code postal\" required>
                             </div>
 
-                            <div class=\"row justify-content-center\">
-                                <p>Ville : <p>
-                                <input type=\"text\" name=\"ville\" placeholder=\"Votre ville\" required>
+                            <div class=\"row justify-content-end\">
+                                <p class=\"mr-2\">Ville : <p>
+                                <input class=\"text-center\" type=\"text\" name=\"ville\" placeholder=\"Votre ville\" required>
                             </div>
                         </div>
 
-                        <div class=\"col md-6\">
-                            <div class=\"row justify-content-center\">
-                                <p>Email : <p>
-                                <input type=\"email\" name=\"Email\" placeholder=\"Votre Email '@'\" required>
+                        <div class=\"col md-6 pr-5\">
+                            <div class=\"row justify-content-end\">
+                                <p class=\"mr-2\">Email : <p>
+                                <input class=\"text-center\" type=\"email\" name=\"Email\" placeholder=\"Votre Email '@'\" required>
                             </div>
 
-                            <div class=\"row justify-content-center\">
-                                <p>Mot de passe : <p>
-                                <input type=\"password\" name=\"motDePasse\" placeholder=\"Votre mot de passe\" required>
+                            <div class=\"row justify-content-end\">
+                                <p class=\"mr-2\">Mot de passe : <p>
+                                <input class=\"text-center\" type=\"password\" name=\"motDePasse\" placeholder=\"Votre mot de passe\" required>
                             </div>
 
-                            <div class=\"row justify-content-center\">
-                                <p>Mot de passe : <p>
-                                <input type=\"password\" name=\"motDePasse2\" placeholder=\"Confirmez votre mot de passe\" required>
+                            <div class=\"row justify-content-end\">
+                                <p class=\"mr-2\">Mot de passe : <p>
+                                <input class=\"text-center\" type=\"password\" name=\"motDePasse2\" placeholder=\"Confirmez le M.D.P\" required>
+                            </div>
+
+                            <div class=\"row mt-4 justify-content-center\">
+                                <button class=\"pt-1 pr-2 pb-1 pl-2 btns btnInscription\" type=\"submit\" name=\"inscription\" required> Inscription </button>
                             </div>
                         </div>
                     </div>
 
-                    <div class=\"row justify-content-center\">
-                        <button class=\" btns btnInscription\" type=\"submit\" name=\"inscription\" required> Inscription </button>
-                    </div>
+                    
                 
                 </form>   
             

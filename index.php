@@ -1,7 +1,15 @@
 <?php
 
     session_start();
-    include('functions.php');  
+    include('functions.php'); 
+    
+    if(isset($_POST['connexion'])){
+        connexion();
+    }
+
+    if (isset($POST['btnDeconnexion'])){
+        session_destroy();
+    }
 
     if (!isset ($_SESSION['panier'])){
         $_SESSION['panier'] = array();

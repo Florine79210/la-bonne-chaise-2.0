@@ -49,22 +49,45 @@
                     </div>
                 </div>
 
-                <?php
-                    formulaireDeConnexion();
-                ?>
+                <div class="container mb-5">
+                    <div class="row justify-content-center formulaires formulaire-connexion">
+                        <form action="index.php" method="post">
+        
+                            <div class="row mt-3 justify-content-end">
+                                <p class="mr-2">Email : <p>
+                                <input class="text-center" type="email" name="Email" placeholder="Votre Email @" required>
+                            </div>
+        
+                            <div class="row justify-content-end">
+                                <p class="mr-2">Mot de passe : <p>
+                                <input class="text-center" type="password" name="motDePasse" placeholder="Votre mot de passe" required>
+                            </div>
+        
+                            <div class="row justify-content-end">
+                                <p class="mr-2">Mot de passe : <p>
+                                <input class="text-center" type="password" name="motDePasse2" placeholder="Confirmez le M.D.P" required>
+                            </div>
+        
+                            <div class="row justify-content-center">
+                                <button class="mb-3 pt-1 pr-2 pb-1 pl-2 btns btnConnexion" type="submit" name="connexion" required> Connexion </button>
+                            </div>
+        
+                        </form>   
+                    </div>
+                </div>
 
                 <div class="container">
-                    <div class="row justify-content-center">
+                    <div class="row mt-3 justify-content-center important">
                         <p>Pas encore inscrit ?</p>
                     </div>
 
-                    <div class="row justify-content-center">
+                    <div class="row justify-content-center important">
                         <p>Inscrivez vous !</p>
                     </div>
 
                     <div class="row justify-content-center">
                         <a href="inscription.php">
-                            <button class="btns btnInscription">Inscription</button>
+                            <button class="mb-5 pt-1 pr-2 pb-1 pl-2 btns btnInscription">Inscription</button>
                         </a>
                     </div>
                 </div>
