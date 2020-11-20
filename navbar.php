@@ -14,7 +14,10 @@
             <div class="row">
                 <a class="nav-link mt-3 mr-2 ml-2" href="index.php"><span>Acceuil</span></a>
                 <a class="nav-link mt-3 mr-2 ml-2" href="gammes.php"><span>Nos Gammes</span></a>
-                <a class="nav-link mt-3 mr-2 ml-2" href="panier.php"><i class="fas fa-shopping-basket"></i><span class="quantite-panier"> (<?php echo nbrArticlesPanier(); ?>)</span></a>
+                <a class="nav-link mt-3 mr-2 ml-2" href="panier.php"><i class="fas fa-shopping-basket"></i><span class="quantite-panier">
+                    (<?php if (isset($_SESSION["panier"])){
+                        echo nbrArticlesPanier();} ?>)
+                </span></a>
 
                 <?php
                     if (isset ($_SESSION['email'])){
@@ -22,7 +25,7 @@
                         echo "<a class=\"nav-link mt-3 mr-2 ml-2\">
                                 <form class=\"btnDeDeconnexion\" action=\"index.php\" method=\"post\">
                                     <i class=\"far fa-user\"></i>
-                                    <input type=\"hidden\" name=\"btnDeconnexion\">
+                                    <input type=\"hidden\" name=\"btnDeconnexion\" value=\"true\">
                                     <input id=\"btnDeco\" style=\"border: none\" type=\"submit\" value=\" Déconnexion\">
                                 </form>
                             </a>";

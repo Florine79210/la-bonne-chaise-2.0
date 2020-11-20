@@ -77,6 +77,32 @@
     color:#978562;
     }
 
+.fiche_article .stockArticle {
+    border-radius: 20px;
+    border-style: outset;
+    font-family: 'Source Sans Pro', Garamond, Arial;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.fiche_article .articleEpuise {
+    background-color: #7e1111;
+    color: #ffffff;
+    border-color: #7e1111;
+}
+
+.fiche_article .articlePresqueEpuise {
+    background-color: #db9808;
+    color: #000000;
+    border-color: #db9808;
+}
+
+.fiche_article .articleEnstock {
+    background-color: #1e7e11;
+    color: #ffffff;
+    border-color: #1e7e11;
+}
+
 .fiche_article  .image_article{
     min-width:20vw;
 }

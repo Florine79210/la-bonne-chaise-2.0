@@ -55,7 +55,7 @@
         
                             <div class="row mt-3 justify-content-end">
                                 <p class="mr-2">Email : <p>
-                                <input class="text-center" type="email" name="Email" placeholder="Votre Email @" required>
+                                <input class="text-center" type="email" name="email" placeholder="Votre Email @" required>
                             </div>
         
                             <div class="row justify-content-end">

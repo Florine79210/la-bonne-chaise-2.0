@@ -3,12 +3,14 @@
     session_start();
     include('functions.php'); 
     
-    if(isset($_POST['connexion'])){
+    if (isset($_POST['connexion'])){
         connexion();
     }
 
-    if (isset($POST['btnDeconnexion'])){
+    if (isset ($_POST['btnDeconnexion'])){
+        $_SESSION = array();
         session_destroy();
+        echo "<div class=\"container w-50 text-center p-3 mt-2 bg-success\"> Vous êtes déconnecté !</div>";
     }
 
     if (!isset ($_SESSION['panier'])){
@@ -21,12 +23,17 @@
 
     $listeArticles = getArticles();
 
-    if (isset($_POST["idEnvoiAjoutPanier"])){
-        $article=getArticleBddFromId($_POST['idEnvoiAjoutPanier']);
+    if (isset ($_POST["idEnvoiAjoutPanier"])){
+        $article = getArticleBddFromId($_POST['idEnvoiAjoutPanier']);
         ajoutPanier($article);    
     }
 
-    if (isset ($_POST["validerCommande"]) ||isset ($_POST["annulerCommande"])){
+    if (isset ($_POST["annulerCommande"])){
+        $_SESSION['panier'] = array();
+    }
+
+    if (isset ($_POST["validerCommande"])){
+        transmissionCommandeBdd();
         $_SESSION['panier'] = array();
     }
     
