@@ -11,8 +11,6 @@ function get_connection()
     return $bdd;
 }
 
-
-
 // LISTE DES ARTICLES
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -24,7 +22,6 @@ function getArticles()
 
     return $listeArticles->fetchAll(PDO::FETCH_ASSOC);
 }
-
 
 // VOIR LES ARTICLES (PAGE D'ACCUEIL)
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -57,10 +54,10 @@ function showArticles()
 
                     <div class=\"col-md-6\">
                         <div class=\"row justify-content-center\">
-                            <img class=\"image_article\" src=\"images/" . $article['image'] . "\">
+                            <img class=\"image_article\" src=\"ressources/images/" . $article['image'] . "\">
                         </div>
 
-                        <div class=\"row justify-content-center\">
+                        <div class=\"row mt-2 justify-content-center\">
                             <p>Prix unitaire : <span>" . $article['prix'] . " €</span><p>\n
                         </div>
                     </div>
@@ -88,7 +85,6 @@ function showArticles()
             </div>";
     }
 }
-
 
 // <----- Ajouter un article de la BDD via son ID ---------------->
 
@@ -125,7 +121,7 @@ function showArticleDetails($article)
 
                 <div class=\"col-md-6\">
                     <div class=\"row mt-4 justify-content-center\">
-                        <img class=\" mt-4 pt-4 image_article\" src=\"images/" . $article['image'] . "\">
+                        <img class=\" mt-4 pt-4 image_article\" src=\"ressources/images/" . $article['image'] . "\">
                     </div> 
                         
                     <div class=\"row mt-4 justify-content-center\">       
@@ -155,7 +151,6 @@ function showArticleDetails($article)
         </div>";
 }
 
-
 // <-----Ajouter un article au panier ---------------->
 
 function ajoutPanier($article)
@@ -175,7 +170,6 @@ function ajoutPanier($article)
     }
 }
 
-
 // VOIR LE PANIER (PAGE PANIER & VALIDATION)
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -191,7 +185,7 @@ function showPanier($nomDePage)
                 
                     <div class=\"col-md-4 text-center\">
                         <h2 class=\"mb-3\">" .  $article['nom'] . "<h2>\n
-                        <img class=\"image_article\" src=\"images/" . $article['image'] . "\">
+                        <img class=\"image_article\" src=\"ressources/images/" . $article['image'] . "\">
                     </div>
                              
                     <div class=\"col-md-4\">
@@ -222,7 +216,6 @@ function showPanier($nomDePage)
     }
 }
 
-
 // <-----Modifier la quantité d'un article ---------------->
 
 function modifierQuantite()
@@ -249,7 +242,6 @@ function modifierQuantite()
     }
 }
 
-
 // <-----Supprimer un article ---------------->
 
 function supprArticle()
@@ -265,7 +257,6 @@ function supprArticle()
         }
     }
 }
-
 
 // <-----Afficher les boutons Valider & Vider le panier (PAGE PANIER) ---------------->
 
@@ -294,7 +285,6 @@ function afficherBoutons()
     }
 }
 
-
 // <-----Vider le Panier ---------------->
 
 function viderPanier()
@@ -302,7 +292,6 @@ function viderPanier()
     $_SESSION['panier'] = array();
     echo "<script> alert(\"Le panier est vide.\");</script>";
 }
-
 
 // <-----Calculs et affichages pour le Panier ---------------->
 
@@ -315,7 +304,6 @@ function nbrArticlesPanier()
     }
     return $nbrArticlesPanier;
 }
-
 
 function totalPrixArticles()
 {
@@ -330,7 +318,6 @@ function totalPrixArticles()
     return $totalPrixArticles;
 }
 
-
 function affichageTotalPrixArticles()
 {
     $totalPrixArticles = totalPrixArticles();
@@ -344,7 +331,6 @@ function affichageTotalPrixArticles()
     }
 }
 
-
 function totalFraisPort()
 {
     $totalFraisPort = 0;
@@ -354,7 +340,6 @@ function totalFraisPort()
     }
     return $totalFraisPort;
 }
-
 
 function affichageTotalFraisPort()
 {
@@ -366,7 +351,6 @@ function affichageTotalFraisPort()
     }
 }
 
-
 function totalARegler()
 {
     $totalPrixArticles = totalPrixArticles();
@@ -374,7 +358,6 @@ function totalARegler()
 
     return $totalPrixArticles + $totalFraisPort;
 }
-
 
 function affichageTotalARegler()
 {
@@ -385,7 +368,6 @@ function affichageTotalARegler()
         echo "<p class=\"text-center total_a_regler\">Total à régler : <span>" . $totalARegler . " €</span></p>";
     }
 }
-
 
 // <----- LISTE DES GAMMES ---------------->
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -410,7 +392,6 @@ function getArticleGammeBddFromId($id)
 
     return $listeArticlesGammes->fetchAll(PDO::FETCH_ASSOC);
 }
-
 
 // <----- AFFICHER LES GAMMES ET LEURS ARTICLES ---------------->
 
@@ -479,7 +460,6 @@ function showGammes()
     }
 }
 
-
 // <----- CONNEXION ---------------->
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -488,11 +468,11 @@ function connexion()
     extract($_POST);
 
     if (empty($email) || empty($motDePasse) || empty($motDePasse2)) {
-        echo "<div class=\"container w-50 text-center p-3 mt-2 bg-danger\"> Un ou plusieurs champs sont vides !</div>";
+        echo "<div class=\"container msg msgDErreur w-50 text-center p-3 mt-2 bg-white\"> Un ou plusieurs champs sont vides !</div>";
     } else {
 
         if (!($motDePasse == $motDePasse2)) {
-            echo "<div class=\"container w-50 text-center p-3 mt-2 bg-danger\"> Les mots de passe sont différents !</div>";
+            echo "<div class=\"container msg msgDErreur w-50 text-center p-3 mt-2 bg-lwhite\"> Les mots de passe sont différents !</div>";
         } else {
             $bdd = get_connection();
 
@@ -501,12 +481,12 @@ function connexion()
             $resultat = $requete->fetch(PDO::FETCH_ASSOC);
 
             if (!$resultat) {
-                echo "<div class=\"container w-50 text-center p-3 mt-2 bg-danger\"> Adresse email INCONNUE !</div>";
+                echo "<div class=\"container msg msgDErreur w-50 text-center p-3 mt-2 bg-white\"> Adresse email INCONNUE !</div>";
             } else {
                 $motDePassCorrect = password_verify($motDePasse, $resultat['mot_de_passe']);
 
                 if (!$motDePassCorrect) {
-                    echo "<div class=\"container w-50 text-center p-3 mt-2 bg-danger\"> Le mot de passe est incorrect !</div>";
+                    echo "<div class=\"container msg msgDErreur w-50 text-center p-3 mt-2 bg-white\"> Le mot de passe est incorrect !</div>";
                 } else {
                     $requete = $bdd->prepare('SELECT * FROM adresses WHERE id_client=?');
                     $requete->execute([$resultat['id']]);
@@ -518,13 +498,12 @@ function connexion()
                     $_SESSION['email'] = $resultat['email'];
                     $_SESSION['adresse'] = $adresseClient;
 
-                    echo "<div class=\"container w-50 text-center p-3 mt-2 bg-success\"> Bienvenue " . $resultat['prenom'] . " " . $resultat['nom'] . " !</div>";
+                    echo "<div class=\"container msg msgOk w-50 text-center p-3 mt-2 bg-white\"> Bonjour " . $resultat['prenom'] . " " . $resultat['nom'] . ",<br>nous sommes ravis de vous revoir !</div>";
                 }
             }
         }
     }
 }
-
 
 // <----- INSCRITION ---------------->
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -560,7 +539,6 @@ function limiteCaracteresInputs()
     return $longueurInputsOk;
 }
 
-
 // function verifMotDePasse()
 // {
 //     $passwordSecur = false;
@@ -577,7 +555,6 @@ function limiteCaracteresInputs()
 //     var_dump($passwordSecur);
 //     return $passwordSecur;
 // }
-
 
 function inscription()
 {
@@ -641,44 +618,44 @@ function formulaireDInscription()
                     <div class=\"row pt-3 formulaires formulaire-inscription\">
                         <div class=\"col md-6 pr-5\">
                             <div class=\"row justify-content-end\">
-                                <p class=\"mr-2\">Nom : <p>
+                                <p class=\"mr-2\">Nom : </p>
                                 <input class=\"text-center\" type=\"text\" name=\"nom\" placeholder=\"Votre Nom\" required>
                             </div>
 
                             <div class=\"row justify-content-end\">
-                                <p class=\"mr-2\">Prénom : <p>
+                                <p class=\"mr-2\">Prénom : </p>
                                 <input class=\"text-center\" type=\"text\" name=\"prenom\" placeholder=\"Votre Prénom\" required>
                             </div>
 
                             <div class=\"row justify-content-end\">
-                                <p class=\"mr-2\">Adresse : <p>
+                                <p class=\"mr-2\">Adresse : </p>
                                 <input class=\"text-center\" type=\"text\" name=\"adresse\" placeholder=\"Votre adresse\" required>
                             </div>
 
                             <div class=\"row justify-content-end\">
-                                <p class=\"mr-2\">Code Postal : <p>
+                                <p class=\"mr-2\">Code Postal : </p>
                                 <input class=\"text-center\" type=\"text\" name=\"codePostal\" placeholder=\"Votre code postal\" required>
                             </div>
 
                             <div class=\"row justify-content-end\">
-                                <p class=\"mr-2\">Ville : <p>
+                                <p class=\"mr-2\">Ville : </p>
                                 <input class=\"text-center\" type=\"text\" name=\"ville\" placeholder=\"Votre ville\" required>
                             </div>
                         </div>
 
                         <div class=\"col md-6 pr-5\">
                             <div class=\"row justify-content-end\">
-                                <p class=\"mr-2\">Email : <p>
+                                <p class=\"mr-2\">Email : </p>
                                 <input class=\"text-center\" type=\"email\" name=\"email\" placeholder=\"Votre Email '@'\" required>
                             </div>
 
                             <div class=\"row justify-content-end\">
-                                <p class=\"mr-2\">Mot de passe : <p>
+                                <p class=\"mr-2\">Mot de passe : </p>
                                 <input class=\"text-center\" type=\"password\" name=\"motDePasse\" placeholder=\"Votre mot de passe\" required>
                             </div>
 
                             <div class=\"row justify-content-end\">
-                                <p class=\"mr-2\">Mot de passe : <p>
+                                <p class=\"mr-2\">Mot de passe : </p>
                                 <input class=\"text-center\" type=\"password\" name=\"motDePasse2\" placeholder=\"Confirmez le M.D.P\" required>
                             </div>
 
@@ -691,7 +668,6 @@ function formulaireDInscription()
                 </form>   
             </div>";
 }
-
 
 // <----- QUANTIE STOCK BDD ---------------->
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -726,7 +702,6 @@ function boutonStocks($stockArticle)
         return "<p class=\"pt-2 pr-3 pb-2 pl-3 stockArticle articleEnstock\">En stock<p>";
     }
 }
-
 
 // <----- COMMANDES ---------------->
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -764,7 +739,6 @@ function transmissionCommandeBdd()
         }
     }
 }
-
 
 // <----- MON COMPTE ---------------->
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -810,12 +784,12 @@ function affichageDesCommandes($idClient)
     }
 }
 
-
 // <-----RECUPRER LES DETAILS D'UNE COMMANDE---------------->
 
 function recupererArticlesCommande($orderId)
 {
     $bdd = get_connection();
+
     $query = $bdd->prepare('SELECT * FROM commande_articles ca INNER JOIN articles a ON a.id = ca.id_article WHERE id_commande = ?');
     $query->execute([$orderId]);
     return $query->fetchAll(PDO::FETCH_ASSOC);
@@ -825,8 +799,6 @@ function recupererArticlesCommande($orderId)
 
 function affichageDetailsCommande($listeArticles)
 {
-
-
     echo "<table class=\"table table-striped\">
 
             <thead class=\"thead-dark text-center\">
@@ -861,4 +833,85 @@ function affichageDetailsCommande($listeArticles)
             </tr>
         </tbody>
     </table>";
+}
+
+// <----- RECUPERER LES INfOS CLIENT ---------------->
+
+function recupererInfosClient($infosClient)
+{
+    $bdd = get_connection();
+    $query = $bdd->prepare('SELECT * FROM clients cl INNER JOIN adresses a ON a.id_client = cl.id WHERE id_client = ?');
+    $query->execute([$infosClient]);
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}
+
+// <-----AFFICHAGE DES INFOS CLIENT---------------->
+
+function affichageDeSInfosClient($idClient)
+{
+    $infosClient = recupererInfosClient($idClient);
+
+    foreach ($infosClient as $infos) {
+
+        echo "<div class=\"container mb-5\">
+                <div class=\"row justify-content-center formulaireInfosClient\">
+                    
+                    <h3 class=\"pt-3 pb-3\">Si vous le souhaitez, vous pouvez modifier vos infos ici</h3>
+
+                    <form action=\"mesInfos.php\" method=\"post\">
+
+                        <div class=\"row pt-3\">
+                            <div class=\"col md-6 mr-2\">
+                                <div class=\"row mb-2 justify-content-end\">
+                                    <p class=\"mr-2\">Nom : </p>
+                                    <input class=\"text-center\" type=\"text\" name=\"nom\" placeholder=\"" . $infos['nom'] . "\">
+                                </div>
+                    
+                                <div class=\"row mb-2 justify-content-end\">
+                                    <p class=\"mr-2\">Prénom : </p>
+                                    <input class=\"text-center\" type=\"text\" name=\"prenom\" placeholder=\"" . $infos['prenom'] . "\">
+                                </div>
+
+                                <div class=\"row mb-2 justify-content-end\">
+                                    <p class=\"mr-2\">Adresse : </p>
+                                    <input class=\"text-center\" type=\"text\" name=\"adresse\" placeholder=\"" . $infos['adresse'] . "\">
+                                </div>
+
+                                <div class=\"row mb-2 justify-content-end\">
+                                    <p class=\"mr-2\">Code Postal : </p>
+                                    <input class=\"text-center\" type=\"text\" name=\"codePostal\" placeholder=\"" . $infos['code_postal'] . "\">
+                                </div>
+
+                                <div class=\"row mb-2 justify-content-end\">
+                                    <p class=\"mr-2\">Ville : </p>
+                                    <input class=\"text-center\" type=\"text\" name=\"ville\" placeholder=\"" . $infos['ville'] . "\">
+                                </div>
+                            </div>
+
+                            <div class=\"col md-6\">
+                                <div class=\"row mb-2 justify-content-end\">
+                                    <p class=\"mr-2\">Email : </p>
+                                    <input class=\"text-center\" type=\"email\" name=\"email\" placeholder=\"" . $infos['email'] . "\">
+                                </div>
+
+                                <div class=\"row mb-2 justify-content-end\">
+                                    <p class=\"mr-2\">Mot de passe : </p>
+                                    <input class=\"text-center\" type=\"password\" name=\"motDePasse\" placeholder=\"Votre mot de passe\" required>
+                                </div>
+
+                                <div class=\"row mb-2 justify-content-end\">
+                                    <p class=\"mr-2\">Mot de passe : </p>
+                                    <input class=\"text-center\" type=\"password\" name=\"motDePasse2\" placeholder=\"Confirmez le M.D.P\" required>
+                                </div>
+
+                                <div class=\"row mt-4 mb-4 justify-content-center\">
+                                    <button class=\"pt-1 pr-2 pb-1 pl-2 btnModifierInfos\" type=\"submit\" name=\"inscription\">Modifier mes infos</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form> 
+                </div>
+            </div>";
+    }
 }

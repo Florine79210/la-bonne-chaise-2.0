@@ -1,0 +1,53 @@
+i {
+    font-size: 50px;  
+}
+
+h2 {
+    font-family: 'Lora', Garamond, Arial;
+    font-weight: bold;
+    font-size: 45px;
+}
+
+.formulaires {
+    border-style:solid;
+    border-width: 3px;
+    border-color: #000000;
+}
+
+.formulaire-connexion {
+    margin-right: 300px;
+    margin-left: 300px;
+}
+
+.formulaire-inscription {
+    margin-right: 150px;
+    margin-left: 150px;
+}
+
+p {
+    font-family: 'Source Sans Pro', Garamond, Arial;
+    font-size: 20px;
+}
+
+.important p {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.btns{
+    border-radius: 15px;
+    border-style: outset;
+    font-family: 'Source Sans Pro', Garamond, Arial;
+    font-weight: bold;
+    font-size: 25px;
+    color: #ffffff;
+    background-color: #7e1111;
+    border-color: #7e1111;
+}
+
+.btns:hover{
+    color: #7e1111;
+    background-color: #ffffff;
+    transform: scale(1.1);
+    transition: 1.5s;
+}

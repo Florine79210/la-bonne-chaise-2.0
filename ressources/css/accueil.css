@@ -103,10 +103,31 @@
     border-color: #1e7e11;
 }
 
-.fiche_article  .image_article{
-    min-width:20vw;
+.fiche_article .image_article{
+    min-width: 18vw;
 }
 
+
+/* MESSAGES */
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.msg {
+    border-style: solid;
+    border-width: 4px;
+    border-radius: 20px;
+    color: #000000;
+    font-family: 'Source Sans Pro', Garamond, Arial;
+    font-weight: bold;
+    font-size: 35px;
+}
+
+.msgDErreur {
+    border-color: #a80404;
+}
+
+.msgOK {
+    border-color: #978562;
+}
 
   /* ======================================================================
 MEDIA QUERIES

@@ -16,16 +16,16 @@ html,body
 }
 
 nav h1 {
-    color: #000000;
+    color: #ffffff;
     font-family: 'Lora', Garamond, Arial;
     font-weight: bold;
     font-size: 55px;
 }
 
-.navbar-nav a {
+.navbar-nav a p {
     color: #000000;
     font-family: 'Lora', Garamond, Arial;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: bold;
 }
 
@@ -40,7 +40,7 @@ nav h1 {
 }
 
 .navbar-nav a .quantite-panier {
-  font-size: 30px;
+  font-size: 15px;
   font-style: italic;
   font-weight: initial;
 }
@@ -53,16 +53,12 @@ nav h1 {
   color: #000000;
 }
 
-#btnDeco {
+.navbar-nav #btnDeco {
   color: #000000;
   font-family: 'Lora', Garamond, Arial;
-  font-size: 30px;
+  font-size: 25px;
   font-weight: bold;
   background-color: #978562;
-}
-
-.navbar-nav a .btnConnexionInscription{
-  font-size: 20px;
 }
 
 #hamburger {

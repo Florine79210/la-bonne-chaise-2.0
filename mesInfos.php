@@ -20,8 +20,8 @@ include('functions.php');
             <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
 
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-            <link rel="stylesheet" href="mesInfos.css">
-            <link rel="stylesheet" href="style.css">
+            <link rel="stylesheet" href="ressources/css/mesInfos.css">
+            <link rel="stylesheet" href="ressources/css/style.css">
 
         </head>
 
@@ -34,6 +34,18 @@ include('functions.php');
             </header>
 
             <main>
+
+                <div class="container mt-5 mb-5">
+                    <div class="row pt-2 justify-content-center text-center">
+                        <i class="far fa-address-book picto"></i>
+                    </div>
+
+                    <div class="row justify-content-center text-center">
+                        <h2 class="pt-2 text-center">Mes Infos</h2>
+                    </div>
+                </div> 
+
+                <?php affichageDeSInfosClient($_SESSION['id']) ?>
 
             </main>
 

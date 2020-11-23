@@ -24,8 +24,8 @@
             <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet"> 
 
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-            <link rel="stylesheet" href="connexion-inscription.css">
-            <link rel="stylesheet" href="style.css">
+            <link rel="stylesheet" href="ressources/css/connexion-inscription.css">
+            <link rel="stylesheet" href="ressources/css/style.css">
 
         </head>
 
@@ -54,17 +54,17 @@
                         <form action="index.php" method="post">
         
                             <div class="row mt-3 justify-content-end">
-                                <p class="mr-2">Email : <p>
+                                <p class="mr-2">Email : </p>
                                 <input class="text-center" type="email" name="email" placeholder="Votre Email @" required>
                             </div>
         
                             <div class="row justify-content-end">
-                                <p class="mr-2">Mot de passe : <p>
+                                <p class="mr-2">Mot de passe : </p>
                                 <input class="text-center" type="password" name="motDePasse" placeholder="Votre mot de passe" required>
                             </div>
         
                             <div class="row justify-content-end">
-                                <p class="mr-2">Mot de passe : <p>
+                                <p class="mr-2">Mot de passe : </p>
                                 <input class="text-center" type="password" name="motDePasse2" placeholder="Confirmez le M.D.P" required>
                             </div>
         

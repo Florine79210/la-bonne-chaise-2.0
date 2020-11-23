@@ -10,7 +10,7 @@
     if (isset ($_POST['btnDeconnexion'])){
         $_SESSION = array();
         session_destroy();
-        echo "<div class=\"container w-50 text-center p-3 mt-2 bg-success\"> Vous êtes déconnecté !</div>";
+        echo "<div class=\"container msg msgOk w-50 text-center p-3 mt-2 bg-white\"> Vous êtes déconnecté !</div>";
     }
 
     if (!isset ($_SESSION['panier'])){
@@ -54,8 +54,8 @@
             <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet"> 
 
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-            <link rel="stylesheet" href="style.css">
-            <link rel="stylesheet" href="accueil.css">
+            <link rel="stylesheet" href="ressources/css/style.css">
+            <link rel="stylesheet" href="ressources/css/accueil.css">
         
         </head>
 

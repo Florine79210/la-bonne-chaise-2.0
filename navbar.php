@@ -12,19 +12,21 @@
     <div class="collapse navbar-collapse text-center" id="navbarNavAltMarkup">
         <div class="navbar-nav mr-4 ml-auto">
             <div class="row">
-                <a class="nav-link mt-4 mr-2 ml-2" href="index.php"><span>Acceuil</span></a>
-                <a class="nav-link mt-4 mr-2 ml-2" href="gammes.php"><span>Nos Gammes</span></a>
-                <a class="nav-link mt-4 mr-2 ml-2" href="panier.php"><i class="fas fa-shopping-basket"></i><span class="quantite-panier">
-                    (<?php if (isset($_SESSION["panier"])){
-                        echo nbrArticlesPanier();} ?>)
-                </span></a>
+                <a class="nav-link mt-4 mr-2 ml-2" href="index.php"><i class="fas fa-store"></i><p>Boutique</p></a>
+                <a class="nav-link mt-4 mr-2 ml-2" href="gammes.php"><i class="fas fa-chair"></i><p>Nos Gammes</p></a>
+                <a class="nav-link mt-4 mr-2 ml-2" href="panier.php">
+                    <i class="fas fa-shopping-basket"></i>
+                    <p>Panier<span class="quantite-panier">
+                        (<?php if (isset($_SESSION["panier"])){echo nbrArticlesPanier();} ?>)
+                    </span></p>
+                </a>
 
                 <?php
                     if (isset ($_SESSION['email'])){
 
-                        echo  "<a class=\"nav-link mr-2 ml-2\" href=\"monCompte.php\"><i class=\"fas fa-user-circle\"></i><span><br>Mon compte</span></a>
+                        echo  "<a class=\"nav-link mt-4 mr-2 ml-2\" href=\"monCompte.php\"><i class=\"fas fa-user-circle\"></i><p>Mon compte</p></a>
                         
-                            <a class=\"nav-link mr-2 ml-2\">
+                            <a class=\"nav-link mt-4 mr-2 ml-2\">
                                 <form action=\"index.php\" method=\"post\">
                                     <i class=\"fas fa-user-slash\"></i>
                                     <br>
@@ -34,7 +36,7 @@
                             </a>";
 
                     } else {
-                        echo "<a class=\"nav-link mr-2 ml-2\" href=\"connexion.php\"><i class=\"far fa-user\"></i><span><br>Connexion/Inscription</span></a>";
+                        echo "<a class=\"nav-link mt-4 mr-2 ml-2\" href=\"connexion.php\"><i class=\"far fa-user\"></i><p>Connexion/Inscription</p></a>";
                     }
                 ?>
 

@@ -1,42 +1,37 @@
-i {
-    font-size: 50px;  
+.picto {
+    font-size: 80px;
+    color:#000000;
 }
 
 h2 {
+    color: #000000;
     font-family: 'Lora', Garamond, Arial;
     font-weight: bold;
-    font-size: 45px;
+    font-size: 40px;
 }
 
-.formulaires {
+.formulaireInfosClient {
     border-style:solid;
     border-width: 3px;
     border-color: #000000;
+    margin-right: 50px;
+    margin-left: 50px;
 }
 
-.formulaire-connexion {
-    margin-right: 300px;
-    margin-left: 300px;
+.formulaireInfosClient h3 {
+    color: #000000;
+    font-family: 'Source Sans Pro', Garamond, Arial;
+    font-weight: bold;
+    font-size: 25px;
 }
 
-.formulaire-inscription {
-    margin-right: 150px;
-    margin-left: 150px;
-}
-
-p {
+.formulaireInfosClient p {
     font-family: 'Source Sans Pro', Garamond, Arial;
     font-size: 20px;
-}
-
-.important p {
-    font-size: 25px;
     font-weight: bold;
 }
 
-
-
-.btns{
+.btnModifierInfos {
     border-radius: 15px;
     border-style: outset;
     font-family: 'Source Sans Pro', Garamond, Arial;
@@ -47,9 +42,9 @@ p {
     border-color: #7e1111;
 }
 
-.btns:hover{
+.btnModifierInfos:hover {
     color: #7e1111;
     background-color: #ffffff;
-    transform: scale(1.1);
+    transform: scale(1.2);
     transition: 1.5s;
 }

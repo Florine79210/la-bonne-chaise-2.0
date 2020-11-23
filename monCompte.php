@@ -20,8 +20,8 @@ include('functions.php');
             <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
 
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-            <link rel="stylesheet" href="monCompte.css">
-            <link rel="stylesheet" href="style.css">
+            <link rel="stylesheet" href="ressources/css/monCompte.css">
+            <link rel="stylesheet" href="ressources/css/style.css">
 
         </head>
 
@@ -35,11 +35,18 @@ include('functions.php');
 
             <main>
 
-                <div class="container">
-                    <div class="row justify-content-center">
+                <div class="container mt-5 mb-5 pb-5">
+                    <div class="row pt-5 justify-content-center text-center">
+                        <i class="fas fa-user-circle picto"></i>
+                    </div>
 
+                    <div class="row pb-5 justify-content-center text-center">
+                        <h2 class="mb-4 pt-2 text-center">Mon compte</h2>
+                    </div>
+
+                    <div class="row justify-content-center">
                         <div class="col-md-6 text-center">
-                            <a class="btnsInfosCommandes" href="mesCommandes.php">
+                            <a class="btn btnsInfosCommandes pt-4 w-50" href="mesCommandes.php">
                                 <i class="fas fa-box-open"></i>
                                 <br>
                                 <p>Mes commandes</p>
@@ -47,7 +54,7 @@ include('functions.php');
                         </div>
 
                         <div class="col-md-6 text-center">
-                            <a class="btnsInfosCommandes" href="mesInfos.php">
+                            <a class="btn btnsInfosCommandes pt-4 w-50" href="mesInfos.php">
                                 <i class="far fa-address-book"></i>
                                 <br>
                                 <p>Mes Infos</p>
