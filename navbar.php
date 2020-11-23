@@ -12,9 +12,9 @@
     <div class="collapse navbar-collapse text-center" id="navbarNavAltMarkup">
         <div class="navbar-nav mr-4 ml-auto">
             <div class="row">
-                <a class="nav-link mt-3 mr-2 ml-2" href="index.php"><span>Acceuil</span></a>
-                <a class="nav-link mt-3 mr-2 ml-2" href="gammes.php"><span>Nos Gammes</span></a>
-                <a class="nav-link mt-3 mr-2 ml-2" href="panier.php"><i class="fas fa-shopping-basket"></i><span class="quantite-panier">
+                <a class="nav-link mt-4 mr-2 ml-2" href="index.php"><span>Acceuil</span></a>
+                <a class="nav-link mt-4 mr-2 ml-2" href="gammes.php"><span>Nos Gammes</span></a>
+                <a class="nav-link mt-4 mr-2 ml-2" href="panier.php"><i class="fas fa-shopping-basket"></i><span class="quantite-panier">
                     (<?php if (isset($_SESSION["panier"])){
                         echo nbrArticlesPanier();} ?>)
                 </span></a>
@@ -22,24 +22,27 @@
                 <?php
                     if (isset ($_SESSION['email'])){
 
-                        echo "<a class=\"nav-link mt-3 mr-2 ml-2\">
-                                <form class=\"btnDeDeconnexion\" action=\"index.php\" method=\"post\">
-                                    <i class=\"far fa-user\"></i>
+                        echo  "<a class=\"nav-link mr-2 ml-2\" href=\"monCompte.php\"><i class=\"fas fa-user-circle\"></i><span><br>Mon compte</span></a>
+                        
+                            <a class=\"nav-link mr-2 ml-2\">
+                                <form action=\"index.php\" method=\"post\">
+                                    <i class=\"fas fa-user-slash\"></i>
+                                    <br>
                                     <input type=\"hidden\" name=\"btnDeconnexion\" value=\"true\">
                                     <input id=\"btnDeco\" style=\"border: none\" type=\"submit\" value=\" Déconnexion\">
                                 </form>
                             </a>";
 
                     } else {
-                        echo "<a class=\"nav-link mt-3 mr-2 ml-2\" href=\"connexion.php\"><i class=\"far fa-user\"></i><span class=\"btnConnexionInscription\"><br>Connexion/Inscription</span></a>";
+                        echo "<a class=\"nav-link mr-2 ml-2\" href=\"connexion.php\"><i class=\"far fa-user\"></i><span><br>Connexion/Inscription</span></a>";
                     }
                 ?>
 
             </div>
             <div class="row mt-1 mr-3 ml-5 reseaux">
-                <a class="nav-link mt-3" href="https://www.facebook.fr"><i class="fab fa-facebook-square"></i></a>
-                <a class="nav-link mt-3" href="https://www.instagram.fr"><i class="fab fa-instagram"></i></a>
-                <a class="nav-link mt-3" href="https://www.twitter.fr"><i class="fab fa-twitter-square"></i></a>
+                <a class="nav-link mt-4" href="https://www.facebook.fr"><i class="fab fa-facebook-square"></i></a>
+                <a class="nav-link mt-4" href="https://www.instagram.fr"><i class="fab fa-instagram"></i></a>
+                <a class="nav-link mt-4" href="https://www.twitter.fr"><i class="fab fa-twitter-square"></i></a>
             </div>
             
         

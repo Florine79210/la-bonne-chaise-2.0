@@ -692,12 +692,49 @@ function formulaireDInscription()
             </div>";
 }
 
+
+// <----- QUANTIE STOCK BDD ---------------->
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+function newQuantityBdd($article)
+{
+    $bdd = get_connection();
+
+    $query = $bdd->prepare('SELECT stock FROM articles where id = ?');
+    $query->execute([$article['id']]);
+    $result = $query->fetch(PDO::FETCH_ASSOC);
+    $quantityInStock = $result['stock'];
+
+    $newQuantityInStock = $quantityInStock - $article['quantite'];
+
+    $requete = $bdd->prepare('UPDATE articles SET stock = :newStock WHERE id = :id');
+    $requete->execute([
+        'newStock' => $newQuantityInStock,
+        'id' => $article['id']
+    ]);
+}
+
+// <----- affichage selon stock BDD ---------------->
+
+function boutonStocks($stockArticle)
+{
+    if ($stockArticle == 0) {
+        return "<p class=\"pt-2 pr-3 pb-2 pl-3 stockArticle articleEpuise\">Article épuisé<p>";
+    } elseif ($stockArticle >= 1 && $stockArticle <= 10) {
+        return "<p class=\"pt-2 pr-3 pb-2 pl-3 stockArticle articlePresqueEpuise\">Vite! Plus que " . $stockArticle . " <p>";
+    } else {
+        return "<p class=\"pt-2 pr-3 pb-2 pl-3 stockArticle articleEnstock\">En stock<p>";
+    }
+}
+
+
 // <----- COMMANDES ---------------->
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+// <----- TRANSMITION DE COMANDE VERS BDD ---------------->
+
 function transmissionCommandeBdd()
 {
-
     $bdd = get_connection();
 
     $numeroCommande = mt_rand(1000000, 9999999);
@@ -723,28 +760,105 @@ function transmissionCommandeBdd()
                 'id_article' => $article['id'],
                 'quantite' => $article['quantite'],
             ]);
+            newQuantityBdd($article);
         }
-
-        $requete = $bdd->prepare('INSERT INTO articles (stock) VALUES (:stock)');
-        $requete->execute([
-                // 'id_commande' => $idCommande,
-                // 'id_article' => $article['id'],
-                // 'quantite' => $article['quantite'],
-            ]);
     }
 }
 
-// <----- STOCKS ---------------->
+
+// <----- MON COMPTE ---------------->
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-function boutonStocks($stockArticle)
+// <----- RECUPERER LES COMMANDES ---------------->
+
+function recupererLesCommandes($id)
 {
-    if ($stockArticle == 0) {
-        return "<p class=\"pt-2 pr-3 pb-2 pl-3 stockArticle articleEpuise\">Article épuisé<p>";
-    } elseif ($stockArticle >= 1 && $stockArticle <= 10) {
-        return "<p class=\"pt-2 pr-3 pb-2 pl-3 stockArticle articlePresqueEpuise\">Vite! Plus que " . $stockArticle . " <p>";
-    } else {
-        return "<p class=\"pt-2 pr-3 pb-2 pl-3 stockArticle articleEnstock\">En stock<p>";
+    $bdd = get_connection();
+
+    $requete = $bdd->prepare('SELECT * FROM commandes WHERE id__client=?');
+    $requete->execute(array($id));
+
+    return $requete->fetchAll(PDO::FETCH_ASSOC);
+}
+
+// <----- AFFICHAGE DES COMMANDES ---------------->
+
+function affichageDesCommandes($idClient)
+{
+    $bdd = get_connection();
+
+    $listeCommandes = recupererLesCommandes($idClient);
+
+    foreach ($listeCommandes as $commande) {
+
+        $commande['prix'] = number_format($commande['prix'], 2, ',', ' ');
+
+        echo "<tr class=\"text-center\">
+                <td>n° " . $commande["numero"] . "</td>
+                <td>" . $commande["date_commande"] . "</td>
+                <td>" . $commande["prix"] . " €</td>
+                <td>
+                    <form action=\"detailsCommande.php\" method=\"post\">
+                        <input type=\"hidden\" name=\"commandeId\" value=\"" . $commande["id"] . "\">
+                        <input type=\"hidden\" name=\"commandeNumber\" value=\"" . $commande["numero"] . "\">
+                        <input type=\"hidden\" name=\"commandeTotal\" value=\"" . $commande["prix"] . "\">
+                        <input type=\"hidden\" name=\"commandeDate\" value=\"" . $commande["date_commande"] . "\">
+                        <button type=\"submit\"  class=\"btn btn-dark\">Détails</button>
+                    </form>
+                </td>
+              </tr>";
     }
 }
 
+
+// <-----RECUPRER LES DETAILS D'UNE COMMANDE---------------->
+
+function recupererArticlesCommande($orderId)
+{
+    $bdd = get_connection();
+    $query = $bdd->prepare('SELECT * FROM commande_articles ca INNER JOIN articles a ON a.id = ca.id_article WHERE id_commande = ?');
+    $query->execute([$orderId]);
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}
+
+// <-----AFFICHAGE DETAILS D'UNE COMMANDE---------------->
+
+function affichageDetailsCommande($listeArticles)
+{
+
+
+    echo "<table class=\"table table-striped\">
+
+            <thead class=\"thead-dark text-center\">
+                <tr>
+                    <th scope=\"col\">Article</th>
+                    <th scope=\"col\">Prix</th>
+                    <th scope=\"col\">Quantité</th>
+                    <th scope=\"col\">Montant</th>
+                </tr>
+            </thead>
+            <tbody class=\"text-center\">";
+
+    $articlesQuantity = 0;
+
+    foreach ($listeArticles as $article) {
+
+        $articlesQuantity += $article['quantite'];
+
+        echo "<tr>
+                    <td>" . $article["nom"] . "</td>
+                    <td>" . $article["prix"] . " € </td>
+                    <td>" . $article["quantite"] . "</td>
+                    <td>" . $article["prix"] * $article["quantite"] . " €</td>
+                  </tr>";
+    }
+
+    echo "<tr>
+                <td>Frais de port</td>
+                <td>" .  number_format(12.49, 2, ',', 0)  . " €</td>
+                <td> $articlesQuantity </td>
+                <td>" .  number_format(12.49 * $articlesQuantity, 2, ',', 0)  . " €</td>
+            </tr>
+        </tbody>
+    </table>";
+}

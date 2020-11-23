@@ -53,19 +53,11 @@ nav h1 {
   color: #000000;
 }
 
-/* .navbar-nav a .btnDeDeconnexion i{
-  font-size: 30px;
-} */
-
-/* .navbar-nav a .btnDeDeconnexion input{
-  background-color: #978562;
+#btnDeco {
   color: #000000;
   font-family: 'Lora', Garamond, Arial;
+  font-size: 30px;
   font-weight: bold;
-  font-size: 20px;
-} */
-
-#btnDeco {
   background-color: #978562;
 }
 
