@@ -430,7 +430,7 @@ function showGammes()
 
                         <div class=\"col-md-6\">
                             <div class=\"row justify-content-center\">
-                                <img class=\"image_article\" src=\"images/" . $article['image'] . "\">
+                                <img class=\"image_article\" src=\"ressources/images/" . $article['image'] . "\">
                             </div>
 
                             <div class=\"row mb-3 justify-content-center\">
