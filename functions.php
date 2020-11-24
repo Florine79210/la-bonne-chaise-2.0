@@ -610,8 +610,6 @@ function inscription()
 
 function formulaireDInscription()
 {
-    $inscription = inscription();
-
     echo "<div class=\"container mb-5\">
                 <form action=\"connexion.php\" method=\"post\">
 
@@ -837,11 +835,11 @@ function affichageDetailsCommande($listeArticles)
 
 // <----- RECUPERER LES INfOS CLIENT ---------------->
 
-function recupererInfosClient($infosClient)
+function recupererInfosClient($id)
 {
     $bdd = get_connection();
-    $query = $bdd->prepare('SELECT * FROM clients cl INNER JOIN adresses a ON a.id_client = cl.id WHERE id_client = ?');
-    $query->execute([$infosClient]);
+    $query = $bdd->prepare('SELECT * FROM clients cl INNER JOIN adresses a ON a.id_client = cl.id WHERE cl.id = ?');
+    $query->execute([$id]);
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
 
@@ -864,34 +862,34 @@ function affichageDeSInfosClient($idClient)
                             <div class=\"col md-6 mr-2\">
                                 <div class=\"row mb-2 justify-content-end\">
                                     <p class=\"mr-2\">Nom : </p>
-                                    <input class=\"text-center\" type=\"text\" name=\"nom\" placeholder=\"" . $infos['nom'] . "\">
+                                    <input class=\"text-center\" type=\"text\" name=\"nom\" value=\"" . $infos['nom'] . "\" required>
                                 </div>
                     
                                 <div class=\"row mb-2 justify-content-end\">
                                     <p class=\"mr-2\">Prénom : </p>
-                                    <input class=\"text-center\" type=\"text\" name=\"prenom\" placeholder=\"" . $infos['prenom'] . "\">
+                                    <input class=\"text-center\" type=\"text\" name=\"prenom\" value=\"" . $infos['prenom'] . "\" required>
                                 </div>
 
                                 <div class=\"row mb-2 justify-content-end\">
                                     <p class=\"mr-2\">Adresse : </p>
-                                    <input class=\"text-center\" type=\"text\" name=\"adresse\" placeholder=\"" . $infos['adresse'] . "\">
+                                    <input class=\"text-center\" type=\"text\" name=\"adresse\" value=\"" . $infos['adresse'] . "\" required>
                                 </div>
 
                                 <div class=\"row mb-2 justify-content-end\">
                                     <p class=\"mr-2\">Code Postal : </p>
-                                    <input class=\"text-center\" type=\"text\" name=\"codePostal\" placeholder=\"" . $infos['code_postal'] . "\">
+                                    <input class=\"text-center\" type=\"text\" name=\"codePostal\" value=\"" . $infos['code_postal'] . "\" required>
                                 </div>
 
                                 <div class=\"row mb-2 justify-content-end\">
                                     <p class=\"mr-2\">Ville : </p>
-                                    <input class=\"text-center\" type=\"text\" name=\"ville\" placeholder=\"" . $infos['ville'] . "\">
+                                    <input class=\"text-center\" type=\"text\" name=\"ville\" value=\"" . $infos['ville'] . "\" required>
                                 </div>
                             </div>
 
                             <div class=\"col md-6\">
                                 <div class=\"row mb-2 justify-content-end\">
                                     <p class=\"mr-2\">Email : </p>
-                                    <input class=\"text-center\" type=\"email\" name=\"email\" placeholder=\"" . $infos['email'] . "\">
+                                    <input class=\"text-center\" type=\"email\" name=\"email\" value=\"" . $infos['email'] . "\" required>
                                 </div>
 
                                 <div class=\"row mb-2 justify-content-end\">
@@ -905,7 +903,8 @@ function affichageDeSInfosClient($idClient)
                                 </div>
 
                                 <div class=\"row mt-4 mb-4 justify-content-center\">
-                                    <button class=\"pt-1 pr-2 pb-1 pl-2 btnModifierInfos\" type=\"submit\" name=\"inscription\">Modifier mes infos</button>
+                                    <input type=\"hidden\" name=\"addressId\" value=\"" . $infos['id'] . "\">
+                                    <button class=\"pt-1 pr-2 pb-1 pl-2 btnModifierInfos\" type=\"submit\" name=\"modifierInfos\">Modifier mes infos</button>
                                 </div>
                             </div>
                         </div>
@@ -913,5 +912,64 @@ function affichageDeSInfosClient($idClient)
                     </form> 
                 </div>
             </div>";
+    }
+}
+
+// <-----MODIFCATION DES INFOS CLIENT---------------->
+
+function modificationInfosClient()
+{
+    extract($_POST);
+
+    if (empty($nom) || empty($prenom) || empty($adresse) || empty($codePostal) || empty($ville) || empty($email) || empty($motDePasse) || empty($motDePasse2)) {
+        echo "<div class=\"container msg msgDErreur w-50 text-center p-3 mt-2 bg-white\"> Un ou plusieurs champs sont vides !</div>";
+    } else {
+
+        if (!limiteCaracteresInputs()) {
+            echo '<script>alert(\'Longueur d\'un ou plusieurs champs incorrect !\')</script>';
+        } else {
+
+            if (!($motDePasse == $motDePasse2)) {
+                echo "<div class=\"container msg msgDErreur w-50 text-center p-3 mt-2 bg-lwhite\"> Les mots de passe sont différents !</div>";
+            } else {
+                $bdd = get_connection();
+
+                $requete = $bdd->prepare('SELECT * FROM clients WHERE id=?');
+                $requete->execute([strip_tags($_SESSION['id'])]);
+                $resultat = $requete->fetch(PDO::FETCH_ASSOC);
+
+                if (!$resultat) {
+                    echo "<div class=\"container msg msgDErreur w-50 text-center p-3 mt-2 bg-white\"> Adresse email INCONNUE !</div>";
+                } else {
+                    $motDePassCorrect = password_verify($motDePasse, $resultat['mot_de_passe']);
+
+                    if (!$motDePassCorrect) {
+                        echo "<div class=\"container msg msgDErreur w-50 text-center p-3 mt-2 bg-white\"> Le mot de passe est incorrect !</div>";
+                    } else {
+
+                        $requete = $bdd->prepare('INSERT INTO clients (nom, prenom, email) VALUES (:nom, :prenom, :email)');
+                        $transmissionCommandeBdd = $requete->execute([
+                            'nom' => $nom,
+                            'prenom' => $prenom,
+                            'email' => $email,
+                        ]);
+
+                        if (!$transmissionCommandeBdd) {
+                            echo "<div class=\"container msg msgDErreur w-50 text-center p-3 mt-2 bg-white\"> ECHEC Vos infos n'ont pas étés modifiées !</div>";
+                        } else {
+                            $query = $bdd->prepare('UPDATE adresses SET adresse = :adresse, code_postal = :code_postal, ville = :ville WHERE id = :id');
+                            $query->execute(array(
+                                'adresse' => $adresse,
+                                'code_postal' => $codePostal,
+                                'ville' => $ville,
+                                'id' => $_POST['addressId']
+                                
+                            ));
+                            echo "<div class=\"container msg msgOk w-50 text-center p-3 mt-2 bg-white\"> Vos infos ont étés modifiées avec succès !</div>";
+                        }
+                    }
+                }
+            }    
+        }
     }
 }

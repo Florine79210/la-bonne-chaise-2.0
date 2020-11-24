@@ -17,6 +17,13 @@ h2 {
     border-color: #978562;
 }
 
+.btnsInfosCommandes:hover {
+    transform: scale(1.2);
+    transition: 1.5s;
+    color:#978562;
+    background-color: #ffffff;
+}
+
 .btnsInfosCommandes p {
     font-family: 'Source Sans Pro', Garamond, Arial;
     font-weight: bold;
@@ -27,11 +34,4 @@ h2 {
 .btnsInfosCommandes i {
     font-size: 50px;
     color:#000000;
-}
-
-.btnsInfosCommandes:hover {
-    transform: scale(1.2);
-    transition: 1.5s;
-    color:#978562;
-    background-color: #ffffff;
 }
