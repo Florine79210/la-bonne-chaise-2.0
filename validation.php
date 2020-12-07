@@ -61,7 +61,8 @@
 
     <!-- BTN VALIDER LA COMMANDE -->
 <!-- ---------------------------------------------------------------------------------------------------------------------------------------- -->
-
+                            <?php
+                            if (isset($_SESSION['email'])) { ?>
                             <button type="button" class="btn btns_V_A btn_valider" data-toggle="modal" data-target="#modalValidation">
                             Valider la commande
                             </button>
@@ -88,7 +89,10 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>             
+                            </div> 
+                            <?php } else {
+                               echo " <a type=\"button\" class=\"btn btns btn-valider-accueil\" href=\"connexion.php\">Connectez vous pour continuer</a>";
+                            }  ?>          
 
                         </div>
 

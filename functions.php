@@ -608,65 +608,6 @@ function inscription()
     }
 }
 
-function formulaireDInscription()
-{
-    echo "<div class=\"container mb-5\">
-                <form action=\"connexion.php\" method=\"post\">
-
-                    <div class=\"row pt-3 formulaires formulaire-inscription\">
-                        <div class=\"col md-6 pr-5\">
-                            <div class=\"row justify-content-end\">
-                                <p class=\"mr-2\">Nom : </p>
-                                <input class=\"text-center\" type=\"text\" name=\"nom\" placeholder=\"Votre Nom\" required>
-                            </div>
-
-                            <div class=\"row justify-content-end\">
-                                <p class=\"mr-2\">Prénom : </p>
-                                <input class=\"text-center\" type=\"text\" name=\"prenom\" placeholder=\"Votre Prénom\" required>
-                            </div>
-
-                            <div class=\"row justify-content-end\">
-                                <p class=\"mr-2\">Adresse : </p>
-                                <input class=\"text-center\" type=\"text\" name=\"adresse\" placeholder=\"Votre adresse\" required>
-                            </div>
-
-                            <div class=\"row justify-content-end\">
-                                <p class=\"mr-2\">Code Postal : </p>
-                                <input class=\"text-center\" type=\"text\" name=\"codePostal\" placeholder=\"Votre code postal\" required>
-                            </div>
-
-                            <div class=\"row justify-content-end\">
-                                <p class=\"mr-2\">Ville : </p>
-                                <input class=\"text-center\" type=\"text\" name=\"ville\" placeholder=\"Votre ville\" required>
-                            </div>
-                        </div>
-
-                        <div class=\"col md-6 pr-5\">
-                            <div class=\"row justify-content-end\">
-                                <p class=\"mr-2\">Email : </p>
-                                <input class=\"text-center\" type=\"email\" name=\"email\" placeholder=\"Votre Email '@'\" required>
-                            </div>
-
-                            <div class=\"row justify-content-end\">
-                                <p class=\"mr-2\">Mot de passe : </p>
-                                <input class=\"text-center\" type=\"password\" name=\"motDePasse\" placeholder=\"Votre mot de passe\" required>
-                            </div>
-
-                            <div class=\"row justify-content-end\">
-                                <p class=\"mr-2\">Mot de passe : </p>
-                                <input class=\"text-center\" type=\"password\" name=\"motDePasse2\" placeholder=\"Confirmez le M.D.P\" required>
-                            </div>
-
-                            <div class=\"row mt-4 justify-content-center\">
-                                <button class=\"pt-1 pr-2 pb-1 pl-2 btns btnInscription\" type=\"submit\" name=\"inscription\" required> Inscription </button>
-                            </div>
-                        </div>
-                    </div>
-
-                </form>   
-            </div>";
-}
-
 // <----- QUANTIE STOCK BDD ---------------->
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
