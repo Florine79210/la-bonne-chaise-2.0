@@ -19,19 +19,19 @@ nav h1 {
     color: #ffffff;
     font-family: 'Lora', Garamond, Arial;
     font-weight: bold;
-    font-size: 55px;
+    font-size: 50px;
 }
 
 .navbar-nav a p {
     color: #000000;
     font-family: 'Lora', Garamond, Arial;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: bold;
 }
 
 .navbar-nav a i{
   color: #000000;
-  font-size: 40px;
+  font-size: 30px;
 }
 
 .navbar-nav a:hover {

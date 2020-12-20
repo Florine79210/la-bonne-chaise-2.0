@@ -3,7 +3,7 @@
 
 <nav class="navbar navbar-expand-lg fixed-top d-flex">
 
-    <h1 class="ml-5">La Bonne Chaise</h1>
+    <h1 class="mr-5 ml-5">La Bonne Chaise</h1>
 
     <button class="navbar-toggler" id="hamburger" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
@@ -41,7 +41,7 @@
                 ?>
 
             </div>
-            <div class="row mt-1 mr-3 ml-5 reseaux">
+            <div class="row mt-1 mr-3 ml-5 d-flex flex-nowrap reseaux">
                 <a class="nav-link mt-4" href="https://www.facebook.fr"><i class="fab fa-facebook-square"></i></a>
                 <a class="nav-link mt-4" href="https://www.instagram.fr"><i class="fab fa-instagram"></i></a>
                 <a class="nav-link mt-4" href="https://www.twitter.fr"><i class="fab fa-twitter-square"></i></a>

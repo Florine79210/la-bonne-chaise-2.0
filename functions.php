@@ -43,11 +43,11 @@ function showArticles()
                             <h2>" .  $article['nom'] . "<h2>\n
                         </div>
                         
-                        <div class=\"row mb-5 pr-5 pb-5\"> 
+                        <div class=\"row mb-5 pr-5\"> 
                             <p>" . $article['description'] . "<p>\n
                         </div>
                         
-                        <div class=\"row justify-content-center pt-5 pr-5 btnStock\"> 
+                        <div class=\"row justify-content-center mt-5 pr-5 btnStock\"> 
                             " . boutonStocks($article['stock']) . "
                         </div>            
                     </div>  
@@ -67,12 +67,12 @@ function showArticles()
                     <div class=\"col-md-6 text-center\">";
 
         if ($article['stock'] > 0) {
-            echo "<form action=\"index.php\" method=\"post\">        
-                                    <input type=\"hidden\" name= \"idEnvoiAjoutPanier\" value=\"" . $article["id"] . "\">
-                                    <input class=\"mt-3 pt-2 pr-3 pb-2 pl-3 btns btn-ajout-panier\"type=\"submit\" name=\"ajoutPanier\" value=\"Ajouter au panier\">
-                                </form>";
+                    echo "<form action=\"index.php\" method=\"post\">        
+                            <input type=\"hidden\" name= \"idEnvoiAjoutPanier\" value=\"" . $article["id"] . "\">
+                            <input class=\"mt-3 pt-2 pr-3 pb-2 pl-3 btns btn-ajout-panier\"type=\"submit\" name=\"ajoutPanier\" value=\"Ajouter au panier\">
+                        </form>";
         }
-        echo "</div>
+                echo "</div>
 
                     <div class=\"col-md-6 text-center\">
                         <form action=\"produit.php\" method=\"post\">       
