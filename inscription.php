@@ -48,7 +48,7 @@
                 <div class="container mb-5">
                     <form action="connexion.php" method="post">
 
-                        <div class="row pt-3 formulaires formulaire-inscription">
+                        <div class="row pt-3 pb-3 formulaires formulaire-inscription">
                             <div class="col md-6 pr-5">
                                 <div class="row justify-content-end">
                                     <p class="mr-2">Nom : </p>
@@ -92,7 +92,7 @@
                                     <input class="text-center" type="password" name="motDePasse2" placeholder="Confirmez le M.D.P" required>
                                 </div>
 
-                                <div class="row mt-4 justify-content-center">
+                                <div class="row mt-5 justify-content-center">
                                     <button class="pt-1 pr-2 pb-1 pl-2 btns btnInscription" type="submit" name="inscription" required> Inscription </button>
                                 </div>
                             </div>

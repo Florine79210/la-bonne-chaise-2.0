@@ -793,64 +793,70 @@ function affichageDeSInfosClient($idClient)
     foreach ($infosClient as $infos) {
 
         echo "<div class=\"container mb-5\">
-                <div class=\"row justify-content-center formulaireInfosClient\">
+                <div class=\"row mr-5 ml-5 pt-4 pb-4 justify-content-center formulaireInfosClient\">
                     
-                    <h3 class=\"pt-3 pb-3\">Si vous le souhaitez, vous pouvez modifier vos infos ici</h3>
+                    <h3 class=\"pb-3\">Si vous le souhaitez, vous pouvez modifier vos infos ici</h3>
 
                     <form action=\"mesInfos.php\" method=\"post\">
+                        <div class=\"row pt-3 justify-content-center\">
 
-                        <div class=\"row pt-3\">
-                            <div class=\"col md-6 mr-2\">
+                            <div class=\"col-md-5 pr-5\">
                                 <div class=\"row mb-2 justify-content-end\">
                                     <p class=\"mr-2\">Nom : </p>
-                                    <input class=\"text-center\" type=\"text\" name=\"nom\" value=\"" . $infos['nom'] . "\" required>
+                                    <input class=\"text-center w-50\" type=\"text\" name=\"nom\" value=\"" . $infos['nom'] . "\" required>
                                 </div>
                     
                                 <div class=\"row mb-2 justify-content-end\">
                                     <p class=\"mr-2\">Prénom : </p>
-                                    <input class=\"text-center\" type=\"text\" name=\"prenom\" value=\"" . $infos['prenom'] . "\" required>
+                                    <input class=\"text-center w-50\" type=\"text\" name=\"prenom\" value=\"" . $infos['prenom'] . "\" required>
                                 </div>
 
                                 <div class=\"row mb-2 justify-content-end\">
                                     <p class=\"mr-2\">Adresse : </p>
-                                    <input class=\"text-center\" type=\"text\" name=\"adresse\" value=\"" . $infos['adresse'] . "\" required>
+                                    <input class=\"text-center w-50\" type=\"text\" name=\"adresse\" value=\"" . $infos['adresse'] . "\" required>
                                 </div>
 
                                 <div class=\"row mb-2 justify-content-end\">
                                     <p class=\"mr-2\">Code Postal : </p>
-                                    <input class=\"text-center\" type=\"text\" name=\"codePostal\" value=\"" . $infos['code_postal'] . "\" required>
+                                    <input class=\"text-center w-50\" type=\"text\" name=\"codePostal\" value=\"" . $infos['code_postal'] . "\" required>
                                 </div>
 
                                 <div class=\"row mb-2 justify-content-end\">
                                     <p class=\"mr-2\">Ville : </p>
-                                    <input class=\"text-center\" type=\"text\" name=\"ville\" value=\"" . $infos['ville'] . "\" required>
+                                    <input class=\"text-center w-50\" type=\"text\" name=\"ville\" value=\"" . $infos['ville'] . "\" required>
                                 </div>
                             </div>
 
-                            <div class=\"col md-6\">
-                                <div class=\"row mb-2 justify-content-end\">
+                            <div class=\"col-md-7 pl-5\">
+                                <div class=\"row mb-4 justify-content-end\">
                                     <p class=\"mr-2\">Email : </p>
-                                    <input class=\"text-center\" type=\"email\" name=\"email\" value=\"" . $infos['email'] . "\" required>
+                                    <input class=\"text-center w-50\" type=\"email\" name=\"email\" value=\"" . $infos['email'] . "\" required>
+                                </div>
+
+                                <div class=\"row mb-4 justify-content-end\">
+                                    <span class=\"mr-2 text-muted\">Veuillez renseigner votre mot de passe<br>avant de valider le(s) changement(s).</span>
                                 </div>
 
                                 <div class=\"row mb-2 justify-content-end\">
                                     <p class=\"mr-2\">Mot de passe : </p>
-                                    <input class=\"text-center\" type=\"password\" name=\"motDePasse\" placeholder=\"Votre mot de passe\" required>
+                                    <input class=\"text-center w-50\" type=\"password\" name=\"motDePasse\" placeholder=\"Votre mot de passe\" required>
                                 </div>
 
                                 <div class=\"row mb-2 justify-content-end\">
                                     <p class=\"mr-2\">Mot de passe : </p>
-                                    <input class=\"text-center\" type=\"password\" name=\"motDePasse2\" placeholder=\"Confirmez le M.D.P\" required>
+                                    <input class=\"text-center w-50\" type=\"password\" name=\"motDePasse2\" placeholder=\"Confirmez le M.D.P\" required>
                                 </div>
 
-                                <div class=\"row mt-4 mb-4 justify-content-center\">
-                                    <input type=\"hidden\" name=\"addressId\" value=\"" . $infos['id'] . "\">
-                                    <button class=\"pt-1 pr-2 pb-1 pl-2 btnModifierInfos\" type=\"submit\" name=\"modifierInfos\">Modifier mes infos</button>
-                                </div>
                             </div>
                         </div>
 
+                        <div class=\"row mt-3 justify-content-center\">
+                            <input type=\"hidden\" name=\"addressId\" value=\"" . $infos['id'] . "\">
+                            <button class=\"pt-1 pr-2 pb-1 pl-2 btnModifierInfos\" type=\"submit\" name=\"modifierInfos\">Modifier mes infos</button>
+                        </div>
+                   
                     </form> 
+
                 </div>
             </div>";
     }
@@ -862,7 +868,7 @@ function modificationInfosClient()
 {
     extract($_POST);
 
-    if (empty($nom) || empty($prenom) || empty($adresse) || empty($codePostal) || empty($ville) || empty($email) || empty($motDePasse) || empty($motDePasse2)) {
+    if (empty($nom) || empty($prenom) || empty($adresse) || empty($codePostal) || empty($ville) || empty($motDePasse) || empty($motDePasse2)) {
         echo "<div class=\"container msg msgDErreur w-50 text-center p-3 mt-2 bg-white\"> Un ou plusieurs champs sont vides !</div>";
     } else {
 
@@ -888,14 +894,14 @@ function modificationInfosClient()
                         echo "<div class=\"container msg msgDErreur w-50 text-center p-3 mt-2 bg-white\"> Le mot de passe est incorrect !</div>";
                     } else {
 
-                        $requete = $bdd->prepare('INSERT INTO clients (nom, prenom, email) VALUES (:nom, :prenom, :email)');
-                        $transmissionCommandeBdd = $requete->execute([
+                        $requete = $bdd->prepare('UPDATE clients SET nom = :nom, prenom = :prenom WHERE id = :id');
+                        $modifInfosClientBdd = $requete->execute([
                             'nom' => $nom,
                             'prenom' => $prenom,
-                            'email' => $email,
+                            'id' => $_SESSION['id']
                         ]);
 
-                        if (!$transmissionCommandeBdd) {
+                        if (!$modifInfosClientBdd) {
                             echo "<div class=\"container msg msgDErreur w-50 text-center p-3 mt-2 bg-white\"> ECHEC Vos infos n'ont pas étés modifiées !</div>";
                         } else {
                             $query = $bdd->prepare('UPDATE adresses SET adresse = :adresse, code_postal = :code_postal, ville = :ville WHERE id = :id');
@@ -904,13 +910,281 @@ function modificationInfosClient()
                                 'code_postal' => $codePostal,
                                 'ville' => $ville,
                                 'id' => $_POST['addressId']
-                                
+
                             ));
                             echo "<div class=\"container msg msgOk w-50 text-center p-3 mt-2 bg-white\"> Vos infos ont étés modifiées avec succès !</div>";
                         }
                     }
                 }
-            }    
+            }
+        }
+    }
+}
+
+// <-----AFFICHAGE FORMULAIRE MODIF MOT DE PASSE CLIENT---------------->
+
+function affichageModifMDPClient($idClient)
+{
+    $infosClient = recupererInfosClient($idClient);
+
+    foreach ($infosClient as $infos) {
+
+        echo "<div class=\"container mb-5\">
+                <div class=\"row mr-5 ml-5 pt-4 pb-4 justify-content-center formulaireInfosClient\">
+                    
+                    <h3 class=\"pb-3\">Si vous le souhaitez, vous pouvez modifier votre mot de passe ici</h3>
+
+                    <form action=\"mesInfos.php\" method=\"post\">
+                        <div class=\"row pt-3 justify-content-center\">
+
+                            <div class=\"col-md-6 pr-5 text-center\">
+                                <p class=\"mr-2 mb-2\">Ancien mot de passe : </p>
+                                <input class=\"text-center w-50 mb-2 pt-2 pb-2\" type=\"password\" name=\"motDePasse\" placeholder=\"Ancien M.D.P\" required>
+                                <input class=\"text-center w-50 mb-2 pt-2 pb-2\" type=\"password\" name=\"motDePasse2\" placeholder=\"Confirmez l'ancien M.D.P\" required>
+                            </div>
+
+                            <div class=\"col-md-6 pl-5 text-center\">
+                                <p class=\"mr-2 mb-2\">Nouveau mot de passe : </p>
+                                <input class=\"text-center w-50 mb-2 pt-2 pb-2\" type=\"password\" name=\"newMotDePasse\" placeholder=\"Nouveau mot de passe\" required>
+                                <input class=\"text-center w-50 mb-2 pt-2 pb-2\" type=\"password\" name=\"newMotDePasse2\" placeholder=\"Confirmez l'ancien M.D.P\" required>
+                            </div>
+                        </div>
+
+                        <div class=\"row mt-3 justify-content-center\">
+                            <input type=\"hidden\" name=\"motDePasseId\" value=\"" . $infos['id'] . "\">
+                            <button class=\"pt-1 pr-2 pb-1 pl-2 btnModifierInfos\" type=\"submit\" name=\"modifierMDP\">Modifier mon mot de passe</button>
+                        </div>
+
+                    </form> 
+                </div>
+            </div>";
+    }
+}
+
+// <-----MODIFCATION DU MOT DE PASSE CLIENT---------------->
+
+function modificationMDPClient()
+{
+    extract($_POST);
+
+    if (empty($motDePasse) || empty($motDePasse2) || empty($newMotDePasse) || empty($newMotDePasse2)) {
+        echo "<div class=\"container msg msgDErreur w-50 text-center p-3 mt-2 bg-white\"> Un ou plusieurs champs sont vides !</div>";
+    } else {
+
+        if (!($motDePasse == $motDePasse2)) {
+            echo "<div class=\"container msg msgDErreur w-50 text-center p-3 mt-2 bg-lwhite\"> Les champs de l'ancien mot de passe sont différents !</div>";
+        } else {
+
+            if (!($newMotDePasse == $newMotDePasse2)) {
+                echo "<div class=\"container msg msgDErreur w-50 text-center p-3 mt-2 bg-lwhite\"> Les champs du nouveau mot de passe sont différents !</div>";
+            } else {
+
+                if (($motDePasse == $newMotDePasse)) {
+                    echo "<div class=\"container msg msgDErreur w-50 text-center p-3 mt-2 bg-lwhite\"> L'ancien mot de passe et le nouveau sont iddentiques !</div>";
+                } else {
+
+                    $bdd = get_connection();
+
+                    $requete = $bdd->prepare('SELECT * FROM clients WHERE id=?');
+                    $requete->execute([strip_tags($_SESSION['id'])]);
+                    $resultat = $requete->fetch(PDO::FETCH_ASSOC);
+
+                    if (!$resultat) {
+                        echo "<div class=\"container msg msgDErreur w-50 text-center p-3 mt-2 bg-white\"> Adresse email INCONNUE !</div>";
+                    } else {
+                        $motDePassCorrect = password_verify($motDePasse, $resultat['mot_de_passe']);
+
+                        if (!$motDePassCorrect) {
+                            echo "<div class=\"container msg msgDErreur w-50 text-center p-3 mt-2 bg-white\"> Le mot de passe est incorrect !</div>";
+                        } else {
+
+                            $options = ['cost' => 12];
+                            $hashpass = password_hash(strip_tags($newMotDePasse), PASSWORD_BCRYPT, $options);
+
+                            $requete = $bdd->prepare('UPDATE clients SET mot_de_passe = :mot_de_passe');
+                            $modifMDPBdd = $requete->execute([
+                                'mot_de_passe' => $hashpass
+                            ]);
+
+                            if (!$modifMDPBdd) {
+                                echo "<div class=\"container msg msgDErreur w-50 text-center p-3 mt-2 bg-white\"> ECHEC Vos infos n'ont pas étés modifiées !</div>";
+                            } else {
+                                echo "<div class=\"container msg msgOk w-50 text-center p-3 mt-2 bg-white\"> Votre mot de passe a été modifié avec succès !</div>";
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// <-----AFFICHAGE DES INFOS CLIENT PAGE VALIDATION ---------------->
+
+function affichageDeSInfosClientPageValidation($idClient)
+{
+    $infosClient = recupererInfosClient($idClient);
+
+    foreach ($infosClient as $infos) {
+
+        echo "<button type=\"button\" class=\"btn mt-5 btnModifierInfosPageValidation\" data-toggle=\"modal\" data-target=\"#modalModifInfosPageValidation\">
+            Modifier mes infos
+            </button>
+
+            <div class=\"modal\" id=\"modalModifInfosPageValidation\" tabindex=\"-1\">
+                <div class=\"modal-dialog\">
+                    <div class=\"modal-content\">
+
+                        <div class=\"mt-3 modal-header-center\">
+                            <button type=\"button\" class=\"close mr-3\" data-dismiss=\"modal\" aria-label=\"Close\">
+                                <span aria-hidden=\"true\">&times;</span>
+                            </button>
+
+                            <h5 class=\"modal-title\">Vous pouvez modifier vos infos ici</h5>
+                        </div>
+
+                        <form action=\"validation.php\" method=\"post\">
+
+                            <div class=\"modal-body-center pr-5\">
+                                
+                                <div class=\"row mr-5 mb-2 justify-content-end\">
+                                    <p class=\"mr-2\">Nom : </p>
+                                    <input class=\"text-center w-50\" type=\"text\" name=\"nom\" value=\"" . $infos['nom'] . "\" required>
+                                </div>
+            
+                                <div class=\"row mr-5 mb-2 justify-content-end\">
+                                    <p class=\"mr-2\">Prénom : </p>
+                                    <input class=\"text-center w-50\" type=\"text\" name=\"prenom\" value=\"" . $infos['prenom'] . "\" required>
+                                </div>
+
+                                <div class=\"row mr-5 mb-2 justify-content-end\">
+                                    <p class=\"mr-2\">Adresse : </p>
+                                    <input class=\"text-center w-50\" type=\"text\" name=\"adresse\" value=\"" . $infos['adresse'] . "\" required>
+                                </div>
+
+                                <div class=\"row mr-5 mb-2 justify-content-end\">
+                                    <p class=\"mr-2\">Code Postal : </p>
+                                    <input class=\"text-center w-50\" type=\"text\" name=\"codePostal\" value=\"" . $infos['code_postal'] . "\" required>
+                                </div>
+
+                                <div class=\"row mr-5 mb-4 justify-content-end\">
+                                    <p class=\"mr-2\">Ville : </p>
+                                    <input class=\"text-center w-50\" type=\"text\" name=\"ville\" value=\"" . $infos['ville'] . "\" required>
+                                </div>
+
+                                <div class=\"row mr-5 mb-4 justify-content-end\">
+                                    <span class=\"mr-2 text-muted\">Veuillez renseigner votre mot de passe<br>avant de valider le(s) changement(s).</span>
+                                </div>
+
+                                <div class=\"row mr-5 mb-2 justify-content-end\">
+                                    <p class=\"mr-2\">Mot de passe : </p>
+                                    <input class=\"text-center w-50\" type=\"password\" name=\"motDePasse\" placeholder=\"Votre mot de passe\" required>
+                                </div>
+
+                                <div class=\"row mr-5 mb-2 justify-content-end\">
+                                    <p class=\"mr-2\">Mot de passe : </p>
+                                    <input class=\"text-center w-50\" type=\"password\" name=\"motDePasse2\" placeholder=\"Confirmez le M.D.P\" required>
+                                </div>
+
+                            </div>
+
+                            <div class=\"modal-footer d-flex justify-content-center\">
+
+                                <input type=\"hidden\" name=\"addressId\" value=\"" . $infos['id'] . "\">
+                                <button type=\"submit\" class=\"mr-1 btn btnModifierInfos\" name=\"modifierInfosPageValidation\">Modifier et<br>revenir a la commande</button>
+                            </div>
+
+                        </form>
+
+                </div>
+            </div>
+        </div>";
+    }
+}
+
+function limiteCaracteresInputsAdresse()
+{
+    $longueurInputsOk = true;
+
+    if (strlen($_POST['nom']) < 3 || strlen($_POST['nom']) > 25) {
+        $longueurInputsOk = false;
+    }
+
+    if (strlen($_POST['prenom']) < 2 || strlen($_POST['prenom']) > 25) {
+        $longueurInputsOk = false;
+    }
+
+
+    if (strlen($_POST['adresse']) < 8 || strlen($_POST['adresse']) > 80) {
+        $longueurInputsOk = false;
+    }
+
+    if (strlen($_POST['codePostal']) !== 5) {
+        $longueurInputsOk = false;
+    }
+
+    if (strlen($_POST['ville']) < 4 || strlen($_POST['ville']) > 40) {
+        $longueurInputsOk = false;
+    }
+
+    return $longueurInputsOk;
+}
+
+// <-----MODIFCATION DES INFOS CLIENT PAGE VALIDATION ---------------->
+
+function modificationInfosClientPageValidation()
+{
+    extract($_POST);
+
+    if (empty($nom) || empty($prenom) || empty($adresse) || empty($codePostal) || empty($ville) || empty($motDePasse) || empty($motDePasse2)) {
+        echo "<div class=\"container msg msgDErreur w-50 text-center p-3 mt-2 bg-white\"> Un ou plusieurs champs sont vides !</div>";
+    } else {
+
+        if (!limiteCaracteresInputsAdresse()) {
+            echo '<script>alert(\'Longueur d\'un ou plusieurs champs incorrect !\')</script>';
+        } else {
+
+            if (!($motDePasse == $motDePasse2)) {
+                echo "<div class=\"container msg msgDErreur w-50 text-center p-3 mt-2 bg-lwhite\"> Les mots de passe sont différents !</div>";
+            } else {
+                $bdd = get_connection();
+
+                $requete = $bdd->prepare('SELECT * FROM clients WHERE id=?');
+                $requete->execute([strip_tags($_SESSION['id'])]);
+                $resultat = $requete->fetch(PDO::FETCH_ASSOC);
+
+                if (!$resultat) {
+                    echo "<div class=\"container msg msgDErreur w-50 text-center p-3 mt-2 bg-white\"> Adresse email INCONNUE !</div>";
+                } else {
+                    $motDePassCorrect = password_verify($motDePasse, $resultat['mot_de_passe']);
+
+                    if (!$motDePassCorrect) {
+                        echo "<div class=\"container msg msgDErreur w-50 text-center p-3 mt-2 bg-white\"> Le mot de passe est incorrect !</div>";
+                    } else {
+
+                        $requete = $bdd->prepare('UPDATE clients SET nom = :nom, prenom = :prenom WHERE id = :id');
+                        $modifInfosClientBdd = $requete->execute([
+                            'nom' => $nom,
+                            'prenom' => $prenom,
+                            'id' => $_SESSION['id']
+                        ]);
+
+                        if (!$modifInfosClientBdd) {
+                            echo "<div class=\"container msg msgDErreur w-50 text-center p-3 mt-2 bg-white\"> ECHEC Vos infos n'ont pas étés modifiées !</div>";
+                        } else {
+                            $query = $bdd->prepare('UPDATE adresses SET adresse = :adresse, code_postal = :code_postal, ville = :ville WHERE id = :id');
+                            $query->execute(array(
+                                'adresse' => $adresse,
+                                'code_postal' => $codePostal,
+                                'ville' => $ville,
+                                'id' => $_POST['addressId']
+
+                            ));
+                            echo "<div class=\"container msg msgOk w-50 text-center p-3 mt-2 bg-white\"> Vos infos ont étés modifiées avec succès !</div>";
+                        }
+                    }
+                }
+            }
         }
     }
 }

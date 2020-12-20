@@ -14,8 +14,6 @@ h2 {
     border-style:solid;
     border-width: 3px;
     border-color: #000000;
-    margin-right: 50px;
-    margin-left: 50px;
 }
 
 .formulaireInfosClient h3 {
@@ -29,6 +27,11 @@ h2 {
     font-family: 'Source Sans Pro', Garamond, Arial;
     font-size: 20px;
     font-weight: bold;
+}
+
+.formulaireInfosClient span {
+    font-family: 'Source Sans Pro', Garamond, Arial;
+    font-size: 20px;
 }
 
 .btnModifierInfos {

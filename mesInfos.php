@@ -7,6 +7,10 @@ if (isset($_POST['modifierInfos'])){
     modificationInfosClient();
 }
 
+if (isset($_POST['modifierMDP'])){
+    modificationMDPClient();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +53,10 @@ if (isset($_POST['modifierInfos'])){
                     </div>
                 </div> 
 
-                <?php affichageDeSInfosClient($_SESSION['id']) ?>
+                <?php
+                    affichageDeSInfosClient($_SESSION['id']);
+                    affichageModifMDPClient($_SESSION['id']);
+                 ?>
 
             </main>
 

@@ -69,16 +69,16 @@
     /* TOTAL PANIER */
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
-.totals {
+.infosPanierEtModifInfos .totals {
     font-family: 'Source Sans Pro', Garamond, Arial;
     font-size: 30px;
 }
 
-.totals span {
+.infosPanierEtModifInfos .totals span {
     font-weight: bold;
 }
 
-.total_a_regler {
+.infosPanierEtModifInfos .total_a_regler {
     font-family: 'Source Sans Pro', Garamond, Arial;
     font-size: 40px;
 }
@@ -148,7 +148,7 @@
 }
 
 
-/* <----BTNS-------------> */
+/* <----BTNS MODALS-------------> */
 
 .valider_vider_panier .btns {
     border-color: #7e1111;
@@ -194,4 +194,64 @@
 .valider_vider_panier .btn-annuler-accueil:hover {
     color: #ffffff;
     background-color: #7e1111;
+}
+
+
+    /* BTN + MODAL Modif infos */
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+.infosPanierEtModifInfos .btnModifierInfosPageValidation {
+    color:#000000;
+    background-color: #978562;
+    border-color: #978562;
+    border-width: 3px;
+    border-radius: 20px;
+    border-style: outset;
+    font-family: 'Source Sans Pro', Garamond, Arial;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.infosPanierEtModifInfos .btnModifierInfosPageValidation:hover {
+    color: #978562;
+    background-color: #ffffff;
+}
+
+.infosPanierEtModifInfos h5 {
+    color: #7e1111;
+    font-family: 'Lora', Garamond, Arial;
+    font-weight: bold;
+    font-size: 35px;
+}
+
+.infosPanierEtModifInfos .close {
+    color: #7e1111;
+}
+
+.infosPanierEtModifInfos p {
+    color: #000000;
+    font-family: 'Source Sans Pro', Garamond, Arial;
+    font-size: 25px;
+}
+
+.infosPanierEtModifInfos p span {
+    font-weight: bold;
+}
+
+.infosPanierEtModifInfos .btnModifierInfos {
+    color: #ffffff;
+    background-color: #7e1111;
+    font-weight: bold;
+    border-color: #7e1111;
+    border-width: 3px;
+    border-radius: 15px;
+    border-style: outset;
+    font-family: 'Source Sans Pro', Garamond, Arial;
+    font-size: 25px;
+}
+
+.infosPanierEtModifInfos .btnModifierInfos:hover {
+    transform: scale(1.1);
+    transition: 1.5s;
+    color: #7e1111;
+    background-color: #ffffff;
 }

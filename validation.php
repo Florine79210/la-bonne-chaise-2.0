@@ -11,6 +11,10 @@
         supprArticle();
     }
 
+    if (isset ($_POST['modifierInfosPageValidation'])){
+        modificationInfosClientPageValidation();
+    }
+
     if (isset ($_POST["annulerCommande"])){
         $_SESSION['panier'] = array();
     }
@@ -49,10 +53,25 @@
 
                 <?php
                     showPanier("validation.php");
-                    affichageTotalPrixArticles();
-                    affichageTotalFraisPort();
-                    affichageTotalARegler();
                 ?>
+
+                <div class="container infosPanierEtModifInfos">
+                    <div class="row">
+
+                        <div class="col-md-6 text-center">
+                            <?php
+                                affichageTotalPrixArticles();
+                                affichageTotalFraisPort();
+                                affichageTotalARegler();
+                            ?>
+                        </div>
+
+                        <div class="col-md-6 text-center">
+                            <?php affichageDeSInfosClientPageValidation($_SESSION['id']) ?>
+                        </div>
+
+                    </div>
+                </div>
 
                 <div class="container mt-5 mb-5 valider_vider_panier">
                     <div class="row">
@@ -62,7 +81,8 @@
     <!-- BTN VALIDER LA COMMANDE -->
 <!-- ---------------------------------------------------------------------------------------------------------------------------------------- -->
                             <?php
-                            if (isset($_SESSION['email'])) { ?>
+                            if (isset($_SESSION['email'])) {
+                            ?>
                             <button type="button" class="btn btns_V_A btn_valider" data-toggle="modal" data-target="#modalValidation">
                             Valider la commande
                             </button>
@@ -91,7 +111,7 @@
                                 </div>
                             </div> 
                             <?php } else {
-                               echo " <a type=\"button\" class=\"btn btns btn-valider-accueil\" href=\"connexion.php\">Connectez vous pour continuer</a>";
+                               echo " <a type=\"button\" class=\"btn btns_V_A btn_valider\" href=\"connexion.php\">Connectez vous pour continuer</a>";
                             }  ?>          
 
                         </div>

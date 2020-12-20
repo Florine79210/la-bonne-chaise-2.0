@@ -68,7 +68,7 @@
                                 <input class="text-center" type="password" name="motDePasse2" placeholder="Confirmez le M.D.P" required>
                             </div>
         
-                            <div class="row justify-content-center">
+                            <div class="row mt-3 justify-content-center">
                                 <button class="mb-3 pt-1 pr-2 pb-1 pl-2 btns btnConnexion" type="submit" name="connexion" required> Connexion </button>
                             </div>
         
