@@ -35,3 +35,55 @@ h2 {
     font-size: 50px;
     color:#000000;
 }
+
+  /* ======================================================================
+MEDIA QUERIES
+====================================================================== */
+
+@media screen and (min-width: 992px) and (max-width: 1999px) {
+
+    .btnsInfosCommandes i {
+        font-size: 35px;
+    }
+
+    .btnsInfosCommandes p {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+
+    .btnsInfosCommandes i {
+        font-size: 30px;
+    }
+
+    .btnsInfosCommandes p {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+
+    .btnsInfosCommandes {
+        margin-bottom: 10px;
+    }
+
+    .btnsInfosCommandes i {
+        font-size: 40px;
+    }
+
+    .btnsInfosCommandes p {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+
+    .btnsInfosCommandes i {
+        font-size: 40px;
+    }
+
+    .btnsInfosCommandes p {
+        font-size: 20px;
+    }
+}

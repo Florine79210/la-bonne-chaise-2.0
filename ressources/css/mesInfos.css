@@ -34,6 +34,10 @@ h2 {
     font-size: 20px;
 }
 
+.formulaireInfosClient .champ-email {
+    width: 190px;
+}
+
 .btnModifierInfos {
     border-radius: 15px;
     border-style: outset;
@@ -71,4 +75,49 @@ h2 {
 
 .msgOK {
     border-color: #978562;
+}
+
+  /* ======================================================================
+MEDIA QUERIES
+====================================================================== */
+
+@media screen and (max-width: 991px) {
+
+    .formulaireInfosClient h3 {
+        font-size: 20px;
+    }
+
+    .infos-client {
+        padding-right: 50px;
+    }
+
+    .email-client {
+        padding-right: 30px;
+    }
+
+    .formulaireInfosClient .champ-email {
+        width: 270px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+
+    .formulaireInfosClient p {
+        font-size: 15px;
+    }
+    
+    .formulaireInfosClient span {
+        font-size: 15px;
+    }
+
+    .formulaireInfosClient .champ-email {
+        width: 180px;
+    }
+}
+
+@media screen and (max-width: 447px) {
+
+    .infos-client {
+        padding-right: 10px;
+    }
 }

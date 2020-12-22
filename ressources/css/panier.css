@@ -2,7 +2,7 @@
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
 .message-panier-vide {
-    color: 000000;
+    color: #000000;
     font-family: 'Source Sans Pro', Garamond, Arial;
     font-size: 50px;
 }
@@ -75,7 +75,8 @@
 }
 
 .voir_panier .image_article {
-    max-width: 8vw;
+    max-width: 35vw;
+    max-height: 35vh;
 }
 
 
@@ -133,16 +134,44 @@
 MEDIA QUERIES
 ====================================================================== */
 
-/* @media screen and (max-width: 1199px) {
+@media screen and (max-width: 991px) {
 
-    .voir_panier .image_article {
-        min-width:12vw;
+    .voir_panier p {
+        font-size: 20px;
+    }
+
+    .voir_panier .infos-article-panier {
+        margin-top: 50px;
+    }
+
+    .voir_panier .btns {
+        font-size: 20px;
     }
 }
 
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 767px) {
 
     .voir_panier .image_article {
-        min-width:50vw;
+        height: 70vh;
     }
-} */
+
+    .total_articles {
+        font-size: 25px;
+    }
+
+    .valider_vider .btns {
+        font-size: 25px;
+    }
+
+    .valider_vider .btn_valider {
+    margin-bottom: 5px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+
+    .voir_panier .image_article {
+        max-width: 40vw;
+        max-height: 30vh;
+    }
+}

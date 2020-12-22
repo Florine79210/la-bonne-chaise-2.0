@@ -37,7 +37,6 @@ function showArticles()
         echo "<div class=\"container mt-5 mb-5 p-4 fiche_article\">
 
                 <div class=\"row\">
-
                     <div class=\"col-md-6 pl-5\">
                         <div class=\"row mb-3 pt-3 text-center\">
                             <h2>" .  $article['nom'] . "<h2>\n
@@ -47,41 +46,45 @@ function showArticles()
                             <p>" . $article['description'] . "<p>\n
                         </div>
                         
-                        <div class=\"row justify-content-center mb-2 pr-5 btnStock\"> 
+                        <div class=\"row justify-content-center mb-3 pr-5 btnStock\"> 
                             " . boutonStocks($article['stock']) . "
                         </div>
                         
-                        <div class=\"row justify-content-center mb-4 pr-5\">
+                        <div class=\"row justify-content-center pr-5\">
                             <form action=\"produit.php\" method=\"post\">       
                                 <input type=\"hidden\" name= \"idDetailsproduit\" value=\"" . $article["id"] . "\">
                                 <input class=\"mt-3 pt-2 pr-3 pb-2 pl-3 btns btn-details\" type=\"submit\" name=\"detailsProduit\" value=\"Détails du produit\">
                             </form>
-                        </div>";
-
-                        
-                        if ($article['stock'] > 0) {
-                            echo "<div class=\"row justify-content-center mb-4 pr-5\">              
-                                    <form action=\"index.php\" method=\"post\">        
-                                        <input type=\"hidden\" name= \"idEnvoiAjoutPanier\" value=\"" . $article["id"] . "\">
-                                        <input class=\"mt-3 pt-2 pr-3 pb-2 pl-3 btns btn-ajout-panier\"type=\"submit\" name=\"ajoutPanier\" value=\"Ajouter au panier\">
-                                    </form>
-                                </div>";
-                        }
-
-                    echo "</div>
+                        </div>
+                    </div>
 
                     <div class=\"col-md-6\">
                         <div class=\"row justify-content-center\">
                             <img class=\"image_article\" src=\"ressources/images/" . $article['image'] . "\">
                         </div>
-
-                        <div class=\"row mt-2 justify-content-center\">
-                            <p>Prix unitaire : <span>" . $article['prix'] . " €</span><p>\n
-                        </div>
                     </div>
                 </div>
 
-            </div>";
+                <div class=\"row ajout-panier-prix\">
+                    <div class=\"col-6\">";
+                        if ($article['stock'] > 0) {    
+                            echo "<div class=\"row justify-content-center pr-3\">              
+                                    <form action=\"index.php\" method=\"post\">        
+                                        <input type=\"hidden\" name= \"idEnvoiAjoutPanier\" value=\"" . $article["id"] . "\">
+                                        <input class=\"pt-2 pr-3 pb-2 pl-3 btns btn-ajout-panier\"type=\"submit\" name=\"ajoutPanier\" value=\"Ajouter au panier\">
+                                    </form>
+                                </div>";
+                        }
+                echo "</div>
+
+                    <div class=\"col-6\">
+                        <div class=\"row pt-2 justify-content-center panier-prix\">
+                            <p>Prix unitaire : <span>" . $article['prix'] . " €</span><p>\n
+                        </div>
+                    </div>
+                </div>";
+               
+        echo "</div>";
     }
 }
 
@@ -187,8 +190,8 @@ function showPanier($nomDePage)
                         <img class=\"image_article\" src=\"ressources/images/" . $article['image'] . "\">
                     </div>
                              
-                    <div class=\"col-md-4\">
-                        <div class=\"row mb-4 justify-content-center\">      
+                    <div class=\"col-md-4 infos-article-panier\">
+                        <div class=\"row justify-content-center\">      
                             <p>Prix unitaire : <span>" . $article['prix'] . " €</span><p>\n 
                         </div>
                     
@@ -413,48 +416,58 @@ function showGammes()
 
             $article['prix'] = number_format($article['prix'], 2, ',', ' ');
 
-            echo "<div class=\"container mt-5 mb-5 p-5 articles_gamme\">
-
+            echo "<div class=\"container mt-5 mb-5 p-4 articles_gamme\">
                     <div class=\"row\">
 
                         <div class=\"col-md-6 pl-5\">
-                            <div class=\"row mb-5 pt-3 text-center\">
+                            <div class=\"row mb-4 pt-3 text-center\">
                                 <h3>" .  $article['nom'] . "<h3>\n
                             </div>
                     
-                            <div class=\"row pr-5\"> 
+                            <div class=\"row mb-2 pr-5\"> 
                                 <p>" . $article['description'] . "<p>\n
-                            </div>            
+                            </div>
+
+                            <div class=\"row justify-content-center mb-2 pr-4 btnStock\"> 
+                                " . boutonStocks($article['stock']) . "
+                            </div>
+
+                            <div class=\"row justify-content-center pr-4\">
+                                <form action=\"produit.php\" method=\"post\">       
+                                    <input type=\"hidden\" name= \"idDetailsproduit\" value=\"" . $article["id"] . "\">
+                                    <input class=\"mt-2 mb-3 pt-2 pr-3 pb-2 pl-3 btns btn-details\" type=\"submit\" name=\"detailsProduit\" value=\"Détails du produit\">
+                                </form>  
+                            </div>
                         </div>  
 
                         <div class=\"col-md-6\">
                             <div class=\"row justify-content-center\">
                                 <img class=\"image_article\" src=\"ressources/images/" . $article['image'] . "\">
                             </div>
+                        </div>
+                    </div>
+                    
 
-                            <div class=\"row mb-3 justify-content-center\">
+                    <div class=\"row ajout-panier-prix\">
+                        <div class=\"col-6\">";
+                            if ($article['stock'] > 0) {    
+                                echo "<div class=\"row justify-content-center\">              
+                                        <form action=\"index.php\" method=\"post\">        
+                                            <input type=\"hidden\" name= \"idEnvoiAjoutPanier\" value=\"" . $article["id"] . "\">
+                                            <input class=\"pt-2 pr-3 pb-2 pl-3 btns btn-ajout-panier\"type=\"submit\" name=\"ajoutPanier\" value=\"Ajouter au panier\">
+                                        </form>
+                                    </div>";
+                        }
+                    echo "</div>
+
+                        <div class=\"col-6\">
+                            <div class=\"row pt-2 justify-content-center panier-prix\">
                                 <p>Prix unitaire : <span>" . $article['prix'] . " €</span><p>\n
                             </div>
                         </div>
-                    </div>
-
-                    <div class=\"row\">
-                        <div class=\"col-md-6 text-center\">
-                            <form action=\"index.php\" method=\"post\">        
-                                <input type=\"hidden\" name= \"idEnvoiAjoutPanier\" value=\"" . $article["id"] . "\">
-                                <input class=\"mt-3 pt-2 pr-3 pb-2 pl-3 btns btn-ajout-panier\"type=\"submit\" name=\"ajoutPanier\" value=\"Ajouter au panier\">
-                            </form>
-                        </div>
-
-                        <div class=\"col-md-6 text-center\">
-                            <form action=\"produit.php\" method=\"post\">       
-                                <input type=\"hidden\" name= \"idDetailsproduit\" value=\"" . $article["id"] . "\">
-                                <input class=\"mt-3 pt-2 pr-3 pb-2 pl-3 btns btn-details\" type=\"submit\" name=\"detailsProduit\" value=\"Détails du produit\">
-                             </form>
-                        </div>
-                    </div>    
-
-                </div>";
+                    </div>";
+               
+            echo "</div>";
         }
     }
 }
@@ -794,12 +807,12 @@ function affichageDeSInfosClient($idClient)
         echo "<div class=\"container mb-5\">
                 <div class=\"row mr-5 ml-5 pt-4 pb-4 justify-content-center formulaireInfosClient\">
                     
-                    <h3 class=\"pb-3\">Si vous le souhaitez, vous pouvez modifier vos infos ici</h3>
+                    <h3 class=\"pb-3 text-center\">Si vous le souhaitez, vous pouvez modifier vos infos ici</h3>
 
                     <form action=\"mesInfos.php\" method=\"post\">
-                        <div class=\"row pt-3 justify-content-center\">
+                        <div class=\"row pt-3 justify-content-center infos-client\">
 
-                            <div class=\"col-md-5 pr-5\">
+                            <div class=\"col-lg-5 pr-5\">
                                 <div class=\"row mb-2 justify-content-end\">
                                     <p class=\"mr-2\">Nom : </p>
                                     <input class=\"text-center w-50\" type=\"text\" name=\"nom\" value=\"" . $infos['nom'] . "\" required>
@@ -826,14 +839,14 @@ function affichageDeSInfosClient($idClient)
                                 </div>
                             </div>
 
-                            <div class=\"col-md-7 pl-5\">
-                                <div class=\"row mb-4 justify-content-end\">
+                            <div class=\"col-lg-7 pl-5\">
+                                <div class=\"row mb-4 justify-content-end email-client\">
                                     <p class=\"mr-2\">Email : </p>
-                                    <input class=\"text-center w-50\" type=\"email\" name=\"email\" value=\"" . $infos['email'] . "\" required>
+                                    <input class=\"text-center champ-email\" type=\"email\" name=\"email\" value=\"" . $infos['email'] . "\" required>
                                 </div>
 
                                 <div class=\"row mb-4 justify-content-end\">
-                                    <span class=\"mr-2 text-muted\">Veuillez renseigner votre mot de passe<br>avant de valider le(s) changement(s).</span>
+                                    <span class=\"mr-2 text-center text-muted\">Veuillez renseigner votre mot de passe<br>avant de valider le(s) changement(s).</span>
                                 </div>
 
                                 <div class=\"row mb-2 justify-content-end\">
@@ -936,13 +949,13 @@ function affichageModifMDPClient($idClient)
                     <form action=\"mesInfos.php\" method=\"post\">
                         <div class=\"row pt-3 justify-content-center\">
 
-                            <div class=\"col-md-6 pr-5 text-center\">
+                            <div class=\"col-lg-6 pr-5 text-center\">
                                 <p class=\"mr-2 mb-2\">Ancien mot de passe : </p>
                                 <input class=\"text-center w-50 mb-2 pt-2 pb-2\" type=\"password\" name=\"motDePasse\" placeholder=\"Ancien M.D.P\" required>
                                 <input class=\"text-center w-50 mb-2 pt-2 pb-2\" type=\"password\" name=\"motDePasse2\" placeholder=\"Confirmez l'ancien M.D.P\" required>
                             </div>
 
-                            <div class=\"col-md-6 pl-5 text-center\">
+                            <div class=\"col-lg-6 pl-5 text-center\">
                                 <p class=\"mr-2 mb-2\">Nouveau mot de passe : </p>
                                 <input class=\"text-center w-50 mb-2 pt-2 pb-2\" type=\"password\" name=\"newMotDePasse\" placeholder=\"Nouveau mot de passe\" required>
                                 <input class=\"text-center w-50 mb-2 pt-2 pb-2\" type=\"password\" name=\"newMotDePasse2\" placeholder=\"Confirmez l'ancien M.D.P\" required>

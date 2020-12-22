@@ -12,28 +12,28 @@
 /* ARTICLES */
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
-.articles_gamme{
+.articles_gamme {
     border-style:solid;
     border-width: 3px;
     border-color: #000000;
 }
 
-.articles_gamme h3{
+.articles_gamme h3 {
     font-family: 'Lora', Garamond, Arial;
     font-weight: bold;
     font-size: 45px;
 }
 
-.articles_gamme p{
+.articles_gamme p {
     font-family: 'Source Sans Pro', Garamond, Arial;
     font-size: 25px;
 }
 
-.articles_gamme p span{
+.articles_gamme p span {
     font-weight:bold;
 }
 
-.articles_gamme .btns{
+.articles_gamme .btns {
     border-radius: 20px;
     border-style: outset;
     font-family: 'Source Sans Pro', Garamond, Arial;
@@ -41,32 +41,123 @@
     font-size: 25px;
 }
 
-.articles_gamme .btns:hover{
+.articles_gamme .btns:hover {
     background-color: #ffffff;
     transform: scale(1.1);
     transition: 1.5s;
 }
 
-.articles_gamme .btn-ajout-panier{
+.articles_gamme .stockArticle {
+    border-radius: 20px;
+    border-style: outset;
+    font-family: 'Source Sans Pro', Garamond, Arial;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.articles_gamme .articleEpuise {
+    background-color: #7e1111;
+    color: #ffffff;
+    border-color: #7e1111;
+}
+
+.articles_gamme .articlePresqueEpuise {
+    background-color: #db9808;
+    color: #000000;
+    border-color: #db9808;
+}
+
+.articles_gamme .articleEnstock {
+    background-color: #1e7e11;
+    color: #ffffff;
+    border-color: #1e7e11;
+}
+
+.articles_gamme .btn-ajout-panier {
     color: #ffffff;
     background-color: #7e1111;
     border-color: #7e1111;
 }
 
-.articles_gamme .btn-ajout-panier:hover{
+.articles_gamme .btn-ajout-panier:hover {
     color: #7e1111;
     }
 
-.articles_gamme .btn-details{
+.articles_gamme .btn-details {
     color:#000000;
     background-color: #978562;
     border-color: #978562;
 }
 
-.articles_gamme .btn-details:hover{
+.articles_gamme .btn-details:hover {
     color:#978562;
     }
 
-.articles_gamme .image_article{
-    min-width:20vw;
+.articles_gamme .image_article {
+    min-width: 15vw;
+    min-height: 15vh;
+}
+
+  /* ======================================================================
+MEDIA QUERIES
+====================================================================== */
+
+@media screen and (max-width: 575px) {
+
+    .articles_gamme .image_article {
+        min-width: 70vw;
+        max-height: 70vh;
+        margin-top: 5px;
+    }
+
+    .articles_gamme .ajout-panier-prix {
+        margin-left: 30px;
+    }
+
+    .articles_gamme .btn-ajout-panier {
+        margin-right: 15px;
+        margin-left: 2px;
+    }
+
+    .articles_gamme .panier-prix {
+        margin-right: 2px;
+        margin-left: 15px;
+    }
+
+    .articles_gamme .btns {
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+
+    .articles_gamme .image_article {
+        max-width: 60vw;
+        max-height: 60vh;
+        margin-top: 70px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    
+    .articles_gamme .image_article {
+        max-width: 60vw;
+        max-height: 60vh;
+        margin-top: 70px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+
+    .gamme h2 {
+        font-size: 40px;
+    }
+
+    .articles_gamme h3 {
+            font-size: 35px;
+        }
+
+    .articles_gamme p {
+        font-size: 20px;
+    }
 }
