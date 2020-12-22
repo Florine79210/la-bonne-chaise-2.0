@@ -94,20 +94,49 @@
     }
 
 .articles_gamme .image_article {
-    min-width: 15vw;
-    min-height: 15vh;
+    min-width: 18vw;
+    min-height: 18vh;
 }
 
   /* ======================================================================
 MEDIA QUERIES
 ====================================================================== */
 
+@media screen and (max-width: 991px) {
+
+    .gamme h2 {
+        font-size: 40px;
+    }
+
+    .articles_gamme h3 {
+            font-size: 35px;
+        }
+
+    .articles_gamme p {
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    
+    .articles_gamme .image_article {
+        width: 55vw;
+        margin-top: 60px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+
+    .articles_gamme .image_article {
+        width: 50vw;
+    }
+}
+
 @media screen and (max-width: 575px) {
 
     .articles_gamme .image_article {
-        min-width: 70vw;
-        max-height: 70vh;
-        margin-top: 5px;
+        width: 80vw;
+        margin-top: 10px;
     }
 
     .articles_gamme .ajout-panier-prix {
@@ -125,39 +154,6 @@ MEDIA QUERIES
     }
 
     .articles_gamme .btns {
-        font-size: 20px;
-    }
-}
-
-@media screen and (min-width: 576px) and (max-width: 767px) {
-
-    .articles_gamme .image_article {
-        max-width: 60vw;
-        max-height: 60vh;
-        margin-top: 70px;
-    }
-}
-
-@media screen and (min-width: 768px) and (max-width: 991px) {
-    
-    .articles_gamme .image_article {
-        max-width: 60vw;
-        max-height: 60vh;
-        margin-top: 70px;
-    }
-}
-
-@media screen and (max-width: 991px) {
-
-    .gamme h2 {
-        font-size: 40px;
-    }
-
-    .articles_gamme h3 {
-            font-size: 35px;
-        }
-
-    .articles_gamme p {
         font-size: 20px;
     }
 }

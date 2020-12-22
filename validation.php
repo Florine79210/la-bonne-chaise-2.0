@@ -58,7 +58,7 @@
                 <div class="container infosPanierEtModifInfos">
                     <div class="row">
 
-                        <div class="col-md-6 text-center">
+                        <div class="col-lg-6 text-center">
                             <?php
                                 affichageTotalPrixArticles();
                                 affichageTotalFraisPort();
@@ -66,8 +66,12 @@
                             ?>
                         </div>
 
-                        <div class="col-md-6 text-center">
-                            <?php affichageDeSInfosClientPageValidation($_SESSION['id']) ?>
+                        <div class="col-lg-6 text-center">
+                            <?php
+                            if (isset($_SESSION['email'])) {
+                                affichageDeSInfosClientPageValidation($_SESSION['id']);
+                            }
+                            ?>
                         </div>
 
                     </div>
@@ -83,7 +87,7 @@
                             <?php
                             if (isset($_SESSION['email'])) {
                             ?>
-                            <button type="button" class="btn btns_V_A btn_valider" data-toggle="modal" data-target="#modalValidation">
+                            <button type="button" class="btn btns2 btns_V_A btn_valider" data-toggle="modal" data-target="#modalValidation">
                             Valider la commande
                             </button>
 
@@ -111,7 +115,7 @@
                                 </div>
                             </div> 
                             <?php } else {
-                               echo " <a type=\"button\" class=\"btn btns_V_A btn_valider\" href=\"connexion.php\">Connectez vous pour continuer</a>";
+                               echo " <a type=\"button\" class=\"btn btns2 btns_V_A btn_valider\" href=\"connexion.php\">Connectez vous pour continuer</a>";
                             }  ?>          
 
                         </div>
@@ -122,7 +126,7 @@
 
                         <div class="col-md-6 text-center">
 
-                            <button type="button" class="btn btns_V_A btn_annuler" data-toggle="modal" data-target="#modalAnnulation">
+                            <button type="button" class="btn btns2 btns_V_A btn_annuler" data-toggle="modal" data-target="#modalAnnulation">
                             Annuler la commande
                             </button>
 

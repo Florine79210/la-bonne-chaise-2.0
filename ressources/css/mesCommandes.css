@@ -9,3 +9,23 @@ h2 {
     font-weight: bold;
     font-size: 40px;
 }
+
+
+  /* ======================================================================
+MEDIA QUERIES
+====================================================================== */
+
+@media screen and (max-width: 575px) {
+    
+    .picto {
+        font-size: 60px;
+    }
+
+    h2 {
+        font-size: 40px;
+    }
+
+    th {
+        font-size: 15px;
+    }
+}

@@ -174,4 +174,8 @@ MEDIA QUERIES
         max-width: 40vw;
         max-height: 30vh;
     }
+
+    .voir_panier .infos-article-panier {
+        margin-top: 10px;
+    }
 }

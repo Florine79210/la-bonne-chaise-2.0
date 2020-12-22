@@ -839,13 +839,13 @@ function affichageDeSInfosClient($idClient)
                                 </div>
                             </div>
 
-                            <div class=\"col-lg-7 pl-5\">
-                                <div class=\"row mb-4 justify-content-end email-client\">
+                            <div class=\"col-lg-7 pl-5 email-mdp-client\">
+                                <div class=\"row mb-4 justify-content-end\">
                                     <p class=\"mr-2\">Email : </p>
                                     <input class=\"text-center champ-email\" type=\"email\" name=\"email\" value=\"" . $infos['email'] . "\" required>
                                 </div>
 
-                                <div class=\"row mb-4 justify-content-end\">
+                                <div class=\"row mb-4 justify-content-end texte-infos\">
                                     <span class=\"mr-2 text-center text-muted\">Veuillez renseigner votre mot de passe<br>avant de valider le(s) changement(s).</span>
                                 </div>
 
@@ -944,18 +944,18 @@ function affichageModifMDPClient($idClient)
         echo "<div class=\"container mb-5\">
                 <div class=\"row mr-5 ml-5 pt-4 pb-4 justify-content-center formulaireInfosClient\">
                     
-                    <h3 class=\"pb-3\">Si vous le souhaitez, vous pouvez modifier votre mot de passe ici</h3>
+                    <h3 class=\"pb-3 text-center\">Si vous le souhaitez, vous pouvez modifier votre mot de passe ici</h3>
 
                     <form action=\"mesInfos.php\" method=\"post\">
                         <div class=\"row pt-3 justify-content-center\">
 
-                            <div class=\"col-lg-6 pr-5 text-center\">
+                            <div class=\"col-lg-6 pr-5 text-center ancien-mdp\">
                                 <p class=\"mr-2 mb-2\">Ancien mot de passe : </p>
                                 <input class=\"text-center w-50 mb-2 pt-2 pb-2\" type=\"password\" name=\"motDePasse\" placeholder=\"Ancien M.D.P\" required>
                                 <input class=\"text-center w-50 mb-2 pt-2 pb-2\" type=\"password\" name=\"motDePasse2\" placeholder=\"Confirmez l'ancien M.D.P\" required>
                             </div>
 
-                            <div class=\"col-lg-6 pl-5 text-center\">
+                            <div class=\"col-lg-6 pl-5 text-center nouveau-mdp\">
                                 <p class=\"mr-2 mb-2\">Nouveau mot de passe : </p>
                                 <input class=\"text-center w-50 mb-2 pt-2 pb-2\" type=\"password\" name=\"newMotDePasse\" placeholder=\"Nouveau mot de passe\" required>
                                 <input class=\"text-center w-50 mb-2 pt-2 pb-2\" type=\"password\" name=\"newMotDePasse2\" placeholder=\"Confirmez l'ancien M.D.P\" required>
@@ -1039,7 +1039,7 @@ function affichageDeSInfosClientPageValidation($idClient)
 
     foreach ($infosClient as $infos) {
 
-        echo "<button type=\"button\" class=\"btn mt-5 btnModifierInfosPageValidation\" data-toggle=\"modal\" data-target=\"#modalModifInfosPageValidation\">
+        echo "<button type=\"button\" class=\"btn mt-5 btns2 btnModifierInfosPageValidation\" data-toggle=\"modal\" data-target=\"#modalModifInfosPageValidation\">
             Modifier mes infos
             </button>
 
@@ -1101,7 +1101,6 @@ function affichageDeSInfosClientPageValidation($idClient)
                             </div>
 
                             <div class=\"modal-footer d-flex justify-content-center\">
-
                                 <input type=\"hidden\" name=\"addressId\" value=\"" . $infos['id'] . "\">
                                 <button type=\"submit\" class=\"mr-1 btn btnModifierInfos\" name=\"modifierInfosPageValidation\">Modifier et<br>revenir a la commande</button>
                             </div>

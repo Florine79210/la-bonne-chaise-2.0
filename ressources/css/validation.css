@@ -62,7 +62,8 @@
 }
 
 .voir_panier .image_article {
-    max-width: 8vw;
+    max-width: 35vw;
+    max-height: 35vh;
 }
 
 
@@ -255,3 +256,26 @@
     color: #7e1111;
     background-color: #ffffff;
 }
+
+  /* ======================================================================
+MEDIA QUERIES
+====================================================================== */
+
+@media screen and (max-width: 767px) {
+
+    .valider_vider_panier .btns {
+        font-size: 15px;
+    }
+
+    .btns2 {
+        font-size: 20px;
+    }
+
+    .btn_valider {
+        margin-bottom: 15px;
+    }
+}
+
+
+max-width: 35vw;
+max-height: 35vh;

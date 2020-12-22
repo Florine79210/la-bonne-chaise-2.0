@@ -49,7 +49,7 @@
                     <form action="connexion.php" method="post">
 
                         <div class="row pt-3 pb-3 formulaires formulaire-inscription">
-                            <div class="col md-6 pr-5">
+                            <div class="col-lg-6 pr-5 infos-inscription">
                                 <div class="row justify-content-end">
                                     <p class="mr-2">Nom : </p>
                                     <input class="text-center" type="text" name="nom" placeholder="Votre Nom" required>
@@ -76,7 +76,7 @@
                                 </div>
                             </div>
 
-                            <div class="col md-6 pr-5">
+                            <div class="col-lg-6 pr-5 infos-inscription">
                                 <div class="row justify-content-end">
                                     <p class="mr-2">Email : </p>
                                     <input class="text-center" type="email" name="email" placeholder="Votre Email '@'" required>

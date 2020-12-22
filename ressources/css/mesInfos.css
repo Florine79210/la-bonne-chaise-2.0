@@ -91,12 +91,26 @@ MEDIA QUERIES
         padding-right: 50px;
     }
 
-    .email-client {
-        padding-right: 30px;
+    .formulaireInfosClient .email-mdp-client {
+        margin-right: 35px;
     }
 
     .formulaireInfosClient .champ-email {
         width: 270px;
+    }
+
+    .formulaireInfosClient .texte-infos {
+        margin-right: 40px;
+    }
+
+    .formulaireInfosClient .ancien-mdp {
+
+        margin-left: 30px;
+    }
+
+    .formulaireInfosClient .nouveau-mdp {
+
+        margin-right: 30px;
     }
 }
 
@@ -113,11 +127,62 @@ MEDIA QUERIES
     .formulaireInfosClient .champ-email {
         width: 180px;
     }
+
+    .formulaireInfosClient .texte-infos {
+        margin-right: 0px;
+    }
 }
 
-@media screen and (max-width: 447px) {
+@media screen and (max-width: 575px) {
+
+    .picto {
+        font-size: 60px;
+    }
+
+    h2 {
+        font-size: 40px;
+    }
 
     .infos-client {
-        padding-right: 10px;
+        padding-right: 5px;
     }
+
+    .formulaireInfosClient .champ-email {
+        width: 30vw;
+    }
+
+    .formulaireInfosClient .texte-infos {
+        margin-right: -20px;
+    }
+
+    .btnModifierInfos {
+        font-size: 20px;
+    }
+
+    .formulaireInfosClient .ancien-mdp {
+
+        margin-left: 25px;
+    }
+
+    .formulaireInfosClient .nouveau-mdp {
+        
+        margin-left: 0px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+
+    .formulaireInfosClient .email-mdp-client {
+        margin-right: 0px;
+        margin-left: -35px;
+    }
+
+    .formulaireInfosClient .champ-email {
+        margin-right: 20px;
+    }
+
+    .btnModifierInfos {
+        font-size: 15px;
+    }
+
 }

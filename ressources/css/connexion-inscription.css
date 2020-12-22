@@ -51,3 +51,38 @@ p {
     transform: scale(1.1);
     transition: 1.5s;
 }
+
+  /* ======================================================================
+MEDIA QUERIES
+====================================================================== */
+
+@media screen and (max-width: 991px) {
+
+    .formulaire-connexion {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+
+    .formulaire-inscription {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+    .infos-inscription {
+        margin-left: -80px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+
+    .infos-inscription {
+        margin-left: 0px;
+    }
+
+    p {
+        font-size: 15px;
+    }
+}
