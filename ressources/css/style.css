@@ -19,19 +19,19 @@ nav h1 {
     color: #ffffff;
     font-family: 'Lora', Garamond, Arial;
     font-weight: bold;
-    font-size: 50px;
+    font-size: 45px;
 }
 
 .navbar-nav a p {
     color: #000000;
     font-family: 'Lora', Garamond, Arial;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
 }
 
 .navbar-nav a i{
   color: #000000;
-  font-size: 30px;
+  font-size: 38px;
 }
 
 .navbar-nav a:hover {
@@ -56,7 +56,7 @@ nav h1 {
 .navbar-nav #btnDeco {
   color: #000000;
   font-family: 'Lora', Garamond, Arial;
-  font-size: 25px;
+  font-size: 18px;
   font-weight: bold;
   background-color: #978562;
 }
@@ -73,11 +73,9 @@ nav h1 {
   }
   
   nav i {
-    color: #978562;
-  }
-  
-  .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(0, 0, 0)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    color: #000000;
+    font-size: 25px;
+    margin-top: 3px;
   }
 
   /* FOOTER */
@@ -125,27 +123,58 @@ nav h1 {
 MEDIA QUERIES
 ====================================================================== */
 
-@media screen and (max-width: 1199px) {
+@media screen and (min-width: 992px) and (max-width: 1199px) {
 
   nav h1 {
-    font-size: 45px;
+    font-size: 38px;
   }
 
-  .navbar-nav a {
-    font-size: 35px;
+  .navbar-nav a i {
+    font-size: 28px;
+  }
+
+  .navbar-nav a p {
+    font-size: 13px;
+  }
+
+  .navbar-nav a .quantite-panier {
+    font-size: 10px;
+  }
+
+  .navbar-nav #btnDeco {
+    font-size: 13px;
   }
 }
 
 @media screen and (max-width: 991px) {
 
-  /* .navbar-nav {
-    display:flex;
-    justify-content: center;
-  } */
+  nav h1 {
+    font-size: 45px;
+  }
+
+  .navbar-nav a i {
+    font-size: 45px;
+  }
+
+  .navbar-nav a p {
+    font-size: 18px;
+  }
+
+  .navbar-nav a .quantite-panier {
+    font-size: 15px;
+  }
+
+  .navbar-nav a i{
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  .navbar-nav #btnDeco {
+    font-size: 18px;
+  }
 
   .navbar-nav .reseaux a i{
-    padding-right: 5px;
-    padding-left: 5px;
+    margin-top: -20px;
   }
 }
 
@@ -160,7 +189,43 @@ MEDIA QUERIES
   }
 }
 
-/* @media screen and (max-width: 576px) {
+@media screen and (max-width: 575px) {
 
-} */
-  
+  nav h1 {
+    font-size: 35px;
+  }
+
+  .navbar-nav {
+    margin-top: 10px;
+  }
+
+  .navbar-nav a i {
+    font-size: 40px;
+  }
+
+  .navbar-nav a p {
+    font-size: 15px;
+  }
+
+  .navbar-nav a .quantite-panier {
+    font-size: 10px;
+  }
+
+  .navbar-nav a i{
+    margin-top: -30px;
+  }
+
+  .navbar-nav #btnDeco {
+    font-size: 15px;
+  }
+
+  .navbar-toggler-icon {
+    width: 20px;
+    height: 25px;
+  }
+
+  nav i {
+    font-size: 20px;
+    margin-top: 3px;
+  }
+}

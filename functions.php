@@ -34,23 +34,41 @@ function showArticles()
 
         $article['prix'] = number_format($article['prix'], 2, ',', ' ');
 
-        echo "<div class=\"container mt-5 mb-5 p-5 fiche_article\">
+        echo "<div class=\"container mt-5 mb-5 p-4 fiche_article\">
 
                 <div class=\"row\">
 
                     <div class=\"col-md-6 pl-5\">
-                        <div class=\"row mb-5 pt-3 text-center\">
+                        <div class=\"row mb-3 pt-3 text-center\">
                             <h2>" .  $article['nom'] . "<h2>\n
                         </div>
                         
-                        <div class=\"row mb-5 pr-5\"> 
+                        <div class=\"row mb-3 pr-5\"> 
                             <p>" . $article['description'] . "<p>\n
                         </div>
                         
-                        <div class=\"row justify-content-center mt-5 pr-5 btnStock\"> 
+                        <div class=\"row justify-content-center mb-2 pr-5 btnStock\"> 
                             " . boutonStocks($article['stock']) . "
-                        </div>            
-                    </div>  
+                        </div>
+                        
+                        <div class=\"row justify-content-center mb-4 pr-5\">
+                            <form action=\"produit.php\" method=\"post\">       
+                                <input type=\"hidden\" name= \"idDetailsproduit\" value=\"" . $article["id"] . "\">
+                                <input class=\"mt-3 pt-2 pr-3 pb-2 pl-3 btns btn-details\" type=\"submit\" name=\"detailsProduit\" value=\"Détails du produit\">
+                            </form>
+                        </div>";
+
+                        
+                        if ($article['stock'] > 0) {
+                            echo "<div class=\"row justify-content-center mb-4 pr-5\">              
+                                    <form action=\"index.php\" method=\"post\">        
+                                        <input type=\"hidden\" name= \"idEnvoiAjoutPanier\" value=\"" . $article["id"] . "\">
+                                        <input class=\"mt-3 pt-2 pr-3 pb-2 pl-3 btns btn-ajout-panier\"type=\"submit\" name=\"ajoutPanier\" value=\"Ajouter au panier\">
+                                    </form>
+                                </div>";
+                        }
+
+                    echo "</div>
 
                     <div class=\"col-md-6\">
                         <div class=\"row justify-content-center\">
@@ -62,25 +80,6 @@ function showArticles()
                         </div>
                     </div>
                 </div>
-
-                <div class=\"row\">
-                    <div class=\"col-md-6 text-center\">";
-
-        if ($article['stock'] > 0) {
-                    echo "<form action=\"index.php\" method=\"post\">        
-                            <input type=\"hidden\" name= \"idEnvoiAjoutPanier\" value=\"" . $article["id"] . "\">
-                            <input class=\"mt-3 pt-2 pr-3 pb-2 pl-3 btns btn-ajout-panier\"type=\"submit\" name=\"ajoutPanier\" value=\"Ajouter au panier\">
-                        </form>";
-        }
-                echo "</div>
-
-                    <div class=\"col-md-6 text-center\">
-                        <form action=\"produit.php\" method=\"post\">       
-                            <input type=\"hidden\" name= \"idDetailsproduit\" value=\"" . $article["id"] . "\">
-                            <input class=\"mt-3 pt-2 pr-3 pb-2 pl-3 btns btn-details\" type=\"submit\" name=\"detailsProduit\" value=\"Détails du produit\">
-                        </form>
-                    </div>
-                </div>    
 
             </div>";
     }

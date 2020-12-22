@@ -105,6 +105,7 @@
 
 .fiche_article .image_article{
     min-width: 18vw;
+    min-height: 18vh;
 }
 
 
@@ -132,3 +133,43 @@
   /* ======================================================================
 MEDIA QUERIES
 ====================================================================== */
+@media screen and (max-width: 575px) {
+
+    .fiche_article .image_article{
+        width: 80vw;
+    }
+}
+
+@media screen and (max-width: 767px) {
+
+    .fiche_article .image_article{
+        width: 50vw;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    
+    .fiche_article .image_article{
+        width: 55vw;
+        margin-top: 60px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+
+    .presentation h2 {
+        font-size: 40px;
+    }
+
+    .presentation p {
+        font-size: 20px;
+    }
+
+    .fiche_article h2{
+        font-size: 35px;
+    }
+    
+    .fiche_article p{
+        font-size: 20px;
+    }
+}
