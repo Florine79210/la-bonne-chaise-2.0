@@ -551,6 +551,8 @@ function limiteCaracteresInputs()
     return $longueurInputsOk;
 }
 
+// NE FONCTIONNE PAS
+
 // function verifMotDePasse()
 // {
 //     $passwordSecur = false;
