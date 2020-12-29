@@ -261,17 +261,56 @@
 MEDIA QUERIES
 ====================================================================== */
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 991px) {
 
-    .valider_vider_panier .btns {
-        font-size: 15px;
-    }
-
-    .btns2 {
+    .voir_panier p {
         font-size: 20px;
     }
 
-    .btn_valider {
-        margin-bottom: 15px;
+    .voir_panier .btns {
+        font-size: 20px;
+    }
+
+    .infosPanierEtModifInfos .totals {
+        font-size: 25px;
+    }
+
+    .infosPanierEtModifInfos .total_a_regler {
+        font-size: 30px;
+    }
+
+    .valider_vider_panier .btns2 {
+        font-size: 27px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+
+    .voir_panier .image_article {
+        height: 70vh;
+    }
+
+    .infosPanierEtModifInfos .totals {
+        font-size: 20px;
+    }
+
+    .infosPanierEtModifInfos .total_a_regler {
+        font-size: 25px;
+    }
+
+    .valider_vider_panier .btn_valider {
+        margin-bottom: 10px;
+    }
+
+    .valider_vider_panier .btns2 {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+
+    .voir_panier .image_article {
+        max-width: 40vw;
+        max-height: 30vh;
     }
 }

@@ -185,12 +185,12 @@ function showPanier($nomDePage)
             echo "<div class=\"container mt-5 mb-5 pt-3 pb-3 voir_panier\">
                 <div class=\"row align-items-center\">
                 
-                    <div class=\"col-md-4 text-center\">
+                    <div class=\"col-lg-4 text-center\">
                         <h2 class=\"mb-3\">" .  $article['nom'] . "<h2>\n
                         <img class=\"image_article\" src=\"ressources/images/" . $article['image'] . "\">
                     </div>
                              
-                    <div class=\"col-md-4 infos-article-panier\">
+                    <div class=\"col-lg-4 infos-article-panier\">
                         <div class=\"row justify-content-center\">      
                             <p>Prix unitaire : <span>" . $article['prix'] . " €</span><p>\n 
                         </div>
@@ -205,7 +205,7 @@ function showPanier($nomDePage)
                         </div>
                     </div>
 
-                    <div class=\"col-md-4 text-center\">
+                    <div class=\"col-lg-4 text-center\">
                         <form action=\"" . $nomDePage . "\" method=\"post\">
                             <input type=\"hidden\" name=\"idSupprimerArticle\" value=\"" . $article['id'] . "\"> 
                             <button class=\" pt-2 pr-3 pb-2 pl-3 btns btn_suppr\" type=\"submit\"> Supprimer l'article </button>
