@@ -1,19 +1,17 @@
 /* MESSAGE PANIER VIDE */
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
 .message-panier-vide {
     color: #000000;
     font-family: 'Source Sans Pro', Garamond, Arial;
     font-size: 50px;
 }
 
-.message-panier-vide span{
+.message-panier-vide span {
     font-weight: bold;
 }
 
 /* ARTICLE */
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
 .voir_panier {
     border-style:solid;
     border-width: 3px;
@@ -31,7 +29,7 @@
     font-size: 25px;
 }
 
-.voir_panier p span{
+.voir_panier p span {
     font-weight:bold;
 }
 
@@ -79,10 +77,8 @@
     max-height: 35vh;
 }
 
-
-    /* TOTAL PANIER */
+/* TOTAL PANIER */
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
 .total_articles {
     font-family: 'Source Sans Pro', Garamond, Arial;
     font-size: 35px;
@@ -92,10 +88,8 @@
     font-weight: bold;
 }
 
-
-    /* BTNS VALIDER & VIDER */
+/* BTNS VALIDER & VIDER */
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
 .valider_vider .btns {
     border-color: #7e1111;
     border-radius: 20px;
@@ -131,9 +125,8 @@
 }
 
   /* ======================================================================
-MEDIA QUERIES
+                MEDIA QUERIES
 ====================================================================== */
-
 @media screen and (max-width: 991px) {
 
     .voir_panier p {

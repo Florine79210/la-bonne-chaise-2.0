@@ -34,7 +34,7 @@ p {
     font-weight: bold;
 }
 
-.btns{
+.btns {
     border-radius: 15px;
     border-style: outset;
     font-family: 'Source Sans Pro', Garamond, Arial;
@@ -45,7 +45,7 @@ p {
     border-color: #7e1111;
 }
 
-.btns:hover{
+.btns:hover {
     color: #7e1111;
     background-color: #ffffff;
     transform: scale(1.1);

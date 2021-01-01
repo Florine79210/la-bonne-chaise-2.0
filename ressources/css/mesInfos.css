@@ -58,7 +58,6 @@ h2 {
 
 /* MESSAGES */
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
 .msg {
     border-style: solid;
     border-width: 4px;
@@ -80,7 +79,6 @@ h2 {
   /* ======================================================================
 MEDIA QUERIES
 ====================================================================== */
-
 @media screen and (max-width: 991px) {
 
     .formulaireInfosClient h3 {
@@ -184,5 +182,4 @@ MEDIA QUERIES
     .btnModifierInfos {
         font-size: 15px;
     }
-
 }

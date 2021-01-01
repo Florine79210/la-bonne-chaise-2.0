@@ -37,9 +37,8 @@ h2 {
 }
 
   /* ======================================================================
-MEDIA QUERIES
+                MEDIA QUERIES
 ====================================================================== */
-
 @media screen and (min-width: 992px) and (max-width: 1999px) {
 
     .btnsInfosCommandes i {

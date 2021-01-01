@@ -1,6 +1,5 @@
     /* PRESENTATION */
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
 .presentation h2 {
     color: #000000;
     font-family: 'Lora', Garamond, Arial;
@@ -18,10 +17,8 @@
     font-weight: bold;
 }
 
-
 /* ARTICLES */
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
 .fiche_article {
     border-style:solid;
     border-width: 3px;
@@ -108,10 +105,8 @@
     min-height: 18vh;
 }
 
-
 /* MESSAGES */
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
 .msg {
     border-style: solid;
     border-width: 4px;
@@ -169,6 +164,8 @@ MEDIA QUERIES
 
     .fiche_article .image_article {
         width: 50vw;
+        margin-top: 20px;
+        margin-bottom: 10px;
     }
 }
 

@@ -1,6 +1,5 @@
-    /* ARTICLE */
+/* ARTICLE */
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
 .voir_panier {
     border-style:solid;
     border-width: 3px;
@@ -18,7 +17,7 @@
     font-size: 25px;
 }
 
-.voir_panier p span{
+.voir_panier p span {
     font-weight:bold;
 }
 
@@ -66,10 +65,8 @@
     max-height: 35vh;
 }
 
-
-    /* TOTAL PANIER */
+/* TOTAL PANIER */
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
 .infosPanierEtModifInfos .totals {
     font-family: 'Source Sans Pro', Garamond, Arial;
     font-size: 30px;
@@ -88,10 +85,8 @@
     font-weight: bold;
 }
 
-
-    /* BTNS VALLIDER & ANNULER */
+/* BTNS VALLIDER & ANNULER */
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
 .valider_vider_panier .btns_V_A {
     border-color: #7e1111;
     border-width: 3px;
@@ -127,30 +122,26 @@
     background-color: #7e1111;
 }
 
-
     /* MODAL */
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
-.valider_vider_panier h5{
+.valider_vider_panier h5 {
     color: #7e1111;
     font-family: 'Lora', Garamond, Arial;
     font-weight: bold;
     font-size: 45px;
 }
 
-.valider_vider_panier p{
+.valider_vider_panier p {
     color: #000000;
     font-family: 'Source Sans Pro', Garamond, Arial;
     font-size: 25px;
 }
 
-.valider_vider_panier p span{
+.valider_vider_panier p span {
     font-weight: bold;
 }
 
-
 /* <----BTNS MODALS-------------> */
-
 .valider_vider_panier .btns {
     border-color: #7e1111;
     border-width: 3px;
@@ -197,8 +188,7 @@
     background-color: #7e1111;
 }
 
-
-    /* BTN + MODAL Modif infos */
+/* BTN + MODAL Modif infos */
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 .infosPanierEtModifInfos .btnModifierInfosPageValidation {
     color:#000000;
@@ -258,9 +248,8 @@
 }
 
   /* ======================================================================
-MEDIA QUERIES
+                    MEDIA QUERIES
 ====================================================================== */
-
 @media screen and (max-width: 991px) {
 
     .voir_panier p {

@@ -13,7 +13,6 @@ function get_connection()
 
 // LISTE DES ARTICLES
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 function getArticles()
 {
     $bdd = get_connection();
@@ -25,7 +24,6 @@ function getArticles()
 
 // VOIR LES ARTICLES (PAGE D'ACCUEIL)
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 function showArticles()
 {
     $listeArticles = getArticles();
@@ -89,7 +87,6 @@ function showArticles()
 }
 
 // <----- Ajouter un article de la BDD via son ID ---------------->
-
 function getArticleBddFromId($id)
 {
     $bdd = get_connection();
@@ -102,7 +99,6 @@ function getArticleBddFromId($id)
 
 // VOIR LES DETAILS D'UN ARTICLE (PAGE PRODUITS)
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 function showArticleDetails($article)
 {
     $article['prix'] = number_format($article['prix'], 2, ',', ' ');
@@ -123,7 +119,7 @@ function showArticleDetails($article)
 
                 <div class=\"col-md-6\">
                     <div class=\"row mt-4 justify-content-center\">
-                        <img class=\" mt-4 pt-4 image_article\" src=\"ressources/images/" . $article['image'] . "\">
+                        <img class=\"mt-4 pt-4 image_article\" src=\"ressources/images/" . $article['image'] . "\">
                     </div> 
                         
                     <div class=\"row mt-4 justify-content-center\">       
@@ -154,7 +150,6 @@ function showArticleDetails($article)
 }
 
 // <-----Ajouter un article au panier ---------------->
-
 function ajoutPanier($article)
 {
     $articleAjoute = false;
@@ -174,7 +169,6 @@ function ajoutPanier($article)
 
 // VOIR LE PANIER (PAGE PANIER & VALIDATION)
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 function showPanier($nomDePage)
 {
     if (isset($_SESSION["panier"])) {
@@ -219,7 +213,6 @@ function showPanier($nomDePage)
 }
 
 // <-----Modifier la quantité d'un article ---------------->
-
 function modifierQuantite()
 {
     $articleId = $_POST["idModifierQuantite"];
@@ -245,7 +238,6 @@ function modifierQuantite()
 }
 
 // <-----Supprimer un article ---------------->
-
 function supprArticle()
 {
     for ($i = 0; $i < count($_SESSION['panier']); $i++) {
@@ -261,7 +253,6 @@ function supprArticle()
 }
 
 // <-----Afficher les boutons Valider & Vider le panier (PAGE PANIER) ---------------->
-
 function afficherBoutons()
 {
     if (!empty($_SESSION["panier"])) {
@@ -288,7 +279,6 @@ function afficherBoutons()
 }
 
 // <-----Vider le Panier ---------------->
-
 function viderPanier()
 {
     $_SESSION['panier'] = array();
@@ -296,7 +286,6 @@ function viderPanier()
 }
 
 // <-----Calculs et affichages pour le Panier ---------------->
-
 function nbrArticlesPanier()
 {
     $nbrArticlesPanier = 0;
@@ -373,7 +362,6 @@ function affichageTotalARegler()
 
 // <----- LISTE DES GAMMES ---------------->
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 function getGammes()
 {
     $bdd = get_connection();
@@ -384,7 +372,6 @@ function getGammes()
 }
 
 // <----- LISTE DES ARTICLES D'UNE GAMME ---------------->
-
 function getArticleGammeBddFromId($id)
 {
     $bdd = get_connection();
@@ -396,7 +383,6 @@ function getArticleGammeBddFromId($id)
 }
 
 // <----- AFFICHER LES GAMMES ET LEURS ARTICLES ---------------->
-
 function showGammes()
 {
     $listeGammes = getGammes();
@@ -474,7 +460,6 @@ function showGammes()
 
 // <----- CONNEXION ---------------->
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 function connexion()
 {
     extract($_POST);
@@ -519,7 +504,6 @@ function connexion()
 
 // <----- INSCRITION ---------------->
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 function limiteCaracteresInputs()
 {
     $longueurInputsOk = true;
@@ -624,7 +608,6 @@ function inscription()
 
 // <----- QUANTIE STOCK BDD ---------------->
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 function newQuantityBdd($article)
 {
     $bdd = get_connection();
@@ -644,7 +627,6 @@ function newQuantityBdd($article)
 }
 
 // <----- affichage selon stock BDD ---------------->
-
 function boutonStocks($stockArticle)
 {
     if ($stockArticle == 0) {
@@ -660,7 +642,6 @@ function boutonStocks($stockArticle)
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // <----- TRANSMITION DE COMANDE VERS BDD ---------------->
-
 function transmissionCommandeBdd()
 {
     $bdd = get_connection();
@@ -697,7 +678,6 @@ function transmissionCommandeBdd()
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // <----- RECUPERER LES COMMANDES ---------------->
-
 function recupererLesCommandes($id)
 {
     $bdd = get_connection();
@@ -709,7 +689,6 @@ function recupererLesCommandes($id)
 }
 
 // <----- AFFICHAGE DES COMMANDES ---------------->
-
 function affichageDesCommandes($idClient)
 {
     $bdd = get_connection();
@@ -738,7 +717,6 @@ function affichageDesCommandes($idClient)
 }
 
 // <-----RECUPRER LES DETAILS D'UNE COMMANDE---------------->
-
 function recupererArticlesCommande($orderId)
 {
     $bdd = get_connection();
@@ -749,7 +727,6 @@ function recupererArticlesCommande($orderId)
 }
 
 // <-----AFFICHAGE DETAILS D'UNE COMMANDE---------------->
-
 function affichageDetailsCommande($listeArticles)
 {
     echo "<table class=\"table table-striped\">
@@ -789,7 +766,6 @@ function affichageDetailsCommande($listeArticles)
 }
 
 // <----- RECUPERER LES INfOS CLIENT ---------------->
-
 function recupererInfosClient($id)
 {
     $bdd = get_connection();
@@ -799,7 +775,6 @@ function recupererInfosClient($id)
 }
 
 // <-----AFFICHAGE DES INFOS CLIENT---------------->
-
 function affichageDeSInfosClient($idClient)
 {
     $infosClient = recupererInfosClient($idClient);
@@ -877,7 +852,6 @@ function affichageDeSInfosClient($idClient)
 }
 
 // <-----MODIFCATION DES INFOS CLIENT---------------->
-
 function modificationInfosClient()
 {
     extract($_POST);
@@ -936,7 +910,6 @@ function modificationInfosClient()
 }
 
 // <-----AFFICHAGE FORMULAIRE MODIF MOT DE PASSE CLIENT---------------->
-
 function affichageModifMDPClient($idClient)
 {
     $infosClient = recupererInfosClient($idClient);
@@ -976,7 +949,6 @@ function affichageModifMDPClient($idClient)
 }
 
 // <-----MODIFCATION DU MOT DE PASSE CLIENT---------------->
-
 function modificationMDPClient()
 {
     extract($_POST);
@@ -1034,7 +1006,6 @@ function modificationMDPClient()
 }
 
 // <-----AFFICHAGE DES INFOS CLIENT PAGE VALIDATION ---------------->
-
 function affichageDeSInfosClientPageValidation($idClient)
 {
     $infosClient = recupererInfosClient($idClient);
@@ -1144,7 +1115,6 @@ function limiteCaracteresInputsAdresse()
 }
 
 // <-----MODIFCATION DES INFOS CLIENT PAGE VALIDATION ---------------->
-
 function modificationInfosClientPageValidation()
 {
     extract($_POST);

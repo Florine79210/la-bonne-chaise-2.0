@@ -1,6 +1,5 @@
-    /* DETAILS PRODUIT */
+/* DETAILS PRODUIT */
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-
 .details_article {
     border-style:solid;
     border-width: 3px;
@@ -70,6 +69,53 @@
    min-width:20vw;
 }
 
-  /* ======================================================================
-MEDIA QUERIES
+/* ======================================================================
+            MEDIA QUERIES
 ====================================================================== */
+@media screen and (max-width: 991px) {
+
+    .details_article h2 {
+        font-size: 35px;
+    }
+
+    .details_article p {
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    
+    .details_article .image_article {
+        width: 55vw;
+    }
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+
+    .details_article .image_article {
+        width: 50vw;
+    }
+}
+
+@media screen and (max-width: 575px) {
+
+    .details_article h2 {
+        font-size: 30px;
+        margin-top: -10px;
+    }
+    
+    .details_article p {
+        font-size: 20px;
+        margin-top: -10px;
+        margin-bottom: 20px;
+    }
+
+    .details_article .image_article {
+        width: 80vw;
+        margin-bottom: 30px;
+    }
+
+    .details_article .btns {
+        font-size: 20px;
+    }
+}
