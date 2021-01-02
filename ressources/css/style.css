@@ -60,21 +60,21 @@ nav h1 {
 }
 
 #hamburger {
-    background-color: #978562;
-    border: outset #000000 3px;
-    margin-right: 30px;
+  background-color: #978562;
+  border: outset #000000 3px;
+  margin-right: 30px;
   }
   
-  #hamburger:hover {
-    transform: scale(1.2);
-    transition: 1.5s;
-  }
+#hamburger:hover {
+  transform: scale(1.2);
+  transition: 1.5s;
+}
   
-  nav i {
-    color: #000000;
-    font-size: 25px;
-    margin-top: 3px;
-  }
+nav i {
+  color: #000000;
+  font-size: 25px;
+  margin-top: 3px;
+}
 
   /* FOOTER */
   /* <------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------> */
