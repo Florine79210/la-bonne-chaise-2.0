@@ -3,7 +3,7 @@
 function get_connection()
 {
     try {
-        $bdd = new PDO('mysql:host=db5001492568.hosting-data.io;dbname=la-bonne-chaise-2;charset=utf8', 'dbu556683', '87j@mB0n1914$t&ll0', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        $bdd = new PDO('mysql:host=db5001492568.hosting-data.io;dbname=dbs1253655;charset=utf8', 'dbu556683', '87j@mB0n1914$t&ll0', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
     } catch (Exception $e) {
         die('Erreur : ' . $e->getMessage());
     }
